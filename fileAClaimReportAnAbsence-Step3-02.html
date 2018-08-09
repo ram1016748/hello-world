@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en" class="fontsLoading">
+<head>
+<title>Prudential Financial - Workplace Benefits</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="web/css/playbook.min.css" rel="stylesheet">
+<link href="web/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="web/css/fullcalendar.min.css">
+<link rel="stylesheet" type="text/css" href="web/css/fullcalendar.print.css" media='print'>
+<link rel="stylesheet" href="web/css/eeportal.css" />
+<style type="text/css">
+#btnSaveAndContinue {
+	float:right;
+}
+</style>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="web/scripts/html5shiv.js"></script>
+<script type="text/javascript" src="web/scripts/respond.min.js"></script>
+<![endif]-->
+</head>
+<body id="maincontent">
+<header role="banner" class="background-pru-blue">
+  <div id="header" class="">
+    <div id="site-overlay"></div>
+    <div class="topnav" role="banner">
+      <div id="global-links-bar" class="text-right" data-qa="global-links-bar">
+        <div class="container">
+          <ul class="list-inline" role="navigation" aria-label="utility">
+            <li> <a href="#main-content" id="skip" title="Skip to main content" class="sr-only sr-only-focusable" data-linktype="anchor">Skip to main content</a></li>
+            <li id="listChangePwd"><a href="javascript:void(0);" id="linkChangePassword">Change Password</a></li>
+            <li id="listContactUs"><a  href="javascript:void(0);" id="linkHelpPopup" aria-label="Contact Us Link Opens a popup window" data-toggle="modal" data-target="#contactUsModal">Contact Us</a> </li>
+            <li> <a href="javascript:void(0);" id="linkForms" onClick="JavaScript:toggleTertiaryNav(this.id,'0')">Forms</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="toprow">
+        <div class="container-lg">
+          <div id="toprow-left">
+            <div id="menu-bars" class="hidden-lg" data-qa="menu-bars">
+              <button id="menu-bars-bars" class="btn btn-stacked toggle-nav" type="button" tabindex="0"> <span class="fa fa-bars"></span> <span class="mobile-buttons-text">Menu</span></button>
+            </div>
+            <div id="pru-logo" data-qa="pru-logo"> <a href="/">
+              <svg class="header-logo pru-logo" data-svg-fallback="web/images/pru-logo-white.png" aria-labelledby="pru-logo-title" viewBox="0 0 170 40" preserveAspectRatio="xMinYMax meet">
+                <title id="pru-logo-title">Prudential Financial</title>
+                <use xlink:href="web/images/pru-logo.svg#pru-logo-default">
+              </svg>
+              </a> </div>
+            <ul class="navtabs visible-lg-inline-block twoLinesText" role="navigation" aria-label="primary" data-qa="primary-navigation">
+              <li class="top-nav-item" id="showLevelTwoL1"> <a href="javascript:void(0);" id="linkBenefitsOverview" onClick="JavaScript:toggleTertiaryNav(this.id,'1')" aria-expanded="true">Benefits Overview</a>
+                <div class="secondary-nav-container">
+                  <div class="container">
+                    <ul class="navpane" aria-hidden="false" data-qa="secondary-Benefits">
+                      <li class=""> <a href="javascript:void(0);" id="linkBenefits" onClick="JavaScript:toggleTertiaryNav(this.id,'2')">Benefits</a> </li>
+                      <li class=""> <a href="javascript:void(0);" id="linkBeneficiaries" onClick="JavaScript:toggleTertiaryNav(this.id,'2')">Beneficiaries</a> </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="top-nav-item" id="showLevelTwoL2"> <a href="javascript:void(0);" aria-expanded="false" id="linkClaimsAndAbsence" onClick="JavaScript:toggleTertiaryNav(this.id,'1')">Claims and Absence</a>
+                <div class="secondary-nav-container">
+                  <div class="container">
+                    <ul class="navpane" aria-hidden="false" data-qa="secondary-Claims">
+                      <li class=""> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="fileClaim">File a Claim / Report an Absence</a> </li>
+                      <li class=""> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="claimsStatus">Claims Status</a> </li>
+                      <li class=""> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="claimHistory">Claim History </a> </li>
+                      <li class=""> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="ciStatusHistory">Critical Illness Status &amp; History</a> </li>
+                      <li class=""> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="accStatusHistory">Accident Status &amp; History</a> </li>
+                      <li class=""> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="taxStatements">Tax Statements</a> </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="top-nav-item "> <a href="javascript:void(0);" id="linkGUL" onClick="JavaScript:toggleTertiaryNav(this.id,'0')" aria-expanded="true">Group Universal Life</a>
+                <div class="secondary-nav-container">
+                  <div class="container">
+                    <ul class="navpane" aria-hidden="true" data-qa="secondary-Advisors">
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="top-nav-item "> <a href="javascript:void(0);" id="linkPOGH" onClick="JavaScript:toggleTertiaryNav(this.id,'0')" aria-expanded="true">Proof of Good Health</a>
+                <div class="secondary-nav-container">
+                  <div class="container">
+                    <ul class="navpane" aria-hidden="true" data-qa="secondary-Advisors">
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="toprow-right">
+            <div class="btn-group dropdown">
+              <button id="linkHiUser" href="javascript:void(0);" class="btn btn-primary dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false"><span class="fa fa-user" id="userIcon"></span><span id="hiUser">Hi, John</span><span class="fa fa-caret-down" id="caretDownIcon"></span></button>
+              <ul class="dropdown-menu">
+                <li><a id="linkMyProfile" href="javascript:void(0);">My Profile</a></li>
+              </ul>
+            </div>
+            <a id="linkLogOut" href="javascript:void(0);"><span class="fa fa-lock" id="logOutIcon"></span><span id="logOut">Logout</span></a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-mobile">
+    <div class="controls">
+      <button type="button" class="close toggle-nav" id="menu-bars-close"> <span class="fa fa-times"></span> close</button>
+    </div>
+    <div id="sMobile-hiUser" class="hiUser"><span class="fa fa-user" id="userImgSM"></span> Hi, John</div>
+    <ul class="list-group panel-group" id="nav-mobile-collapse" role="tablist" aria-multiselectable="true">
+      <li> <a id="sMobile-linkMyProfile" class="linkMyProfile" href="javascript:void(0);" title="My Profile">My Profile</a> </li>
+      <li> <a class="collapsed accordion-icon-control" data-toggle="collapse" data-parent="#" href="#sMobile-linkBenefitsOverview" aria-controls="Benefits Overview" aria-expanded="false" role="tab"><span class="accordion-icon"></span>Benefits Overview</a>
+        <div id="sMobile-linkBenefitsOverview" class="collapse" role="tabpanel" aria-expanded="false">
+          <ul>
+            <li> <a href="javascript:void(0);" id="sMobile-linkBenefits" onClick="JavaScript:toggleTertiaryNav(this.id,'2')">Benefits</a> </li>
+            <li> <a href="javascript:void(0);" id="sMobile-linkBeneficiaries" onClick="JavaScript:toggleTertiaryNav(this.id,'2')">Beneficiaries</a> </li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="collapsed accordion-icon-control" data-toggle="collapse" data-parent="#" href="#sMobile-claimsAndAbsence" aria-controls="Claims &amp; Absence" aria-expanded="false" role="tab"><span class="accordion-icon"></span>Claims &amp; Absence</a>
+        <div id="sMobile-claimsAndAbsence" class="collapse" role="tabpanel" aria-expanded="false">
+          <ul>
+            <li> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="sMobile-fileClaim">File a Claim / Report an Absence</a> </li>
+            <li> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="sMobile-claimsStatus">Claims Status</a> </li>
+            <li> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="sMobile-claimHistory">Claim History </a> </li>
+            <li> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="sMobile-ciStatusHistory">Critical Illness Status &amp; History</a> </li>
+            <li> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="sMobile-accStatusHistory">Accident Status &amp; History</a> </li>
+            <li> <a href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'2')" id="sMobile-taxStatements">Tax Statements</a> </li>
+          </ul>
+        </div>
+      </li>
+      <li> <a href="javascript:void(0);" id="sMobile-linkGUL" onClick="JavaScript:toggleTertiaryNav(this.id,'0')">Group Universal Life</a> </li>
+      <li> <a href="javascript:void(0);" id="sMobile-linkPOGH" onClick="JavaScript:toggleTertiaryNav(this.id,'0')">Proof of Good Health</a> </li>
+    </ul>
+    <div>
+      <ul class="list-group list-unstyled global-links" data-qa="offcanvas-global-links">
+        <li> <a href="javascript:void(0);" class="list-group-item" id="sMobile-linkHelpPopup" aria-label="Contact Us Link Opens a popup window" data-toggle="modal" data-target="#contactUsModal">Contact Us</a> </li>
+        <li> <a href="javascript:void(0);" class="list-group-item" id="sMobile-linkForms" onClick="JavaScript:toggleTertiaryNav(this.id,'0')">Forms</a> </li>
+        <li><a id="sMobile-linkLogOut" class="list-group-item" href="javascript:void(0);" onClick="JavaScript:toggleTertiaryNav(this.id,'0')"><span class="fa fa-lock" id="sMobile-logOutIcon"></span><span id="sMobile-logOut">Logout</span></a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main id="main-content" class="content" role="main">
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+<h1 id="pageTitle">File a Claim / Report an Absence</h1>
+<div align="center" class="fileAClaimStepIndicator">
+  <ol id="fileAClaimStepIndicator" class="list-unstyled text-center step-indicator step-indicator-horizontal">
+    <li class="success">
+      <div id="txtStep1" class="step"><span class="fa fa-check"></span></div>
+      <div id="txtCaption1" class="caption hidden-xs">Demographic info</div>
+    </li>
+    <li class="success">
+      <div id="txtStep2" class="step"><span class="fa fa-check"></span></div>
+      <div id="txtCaption2" class="caption hidden-xs">Reason</div>
+    </li>
+    <li class="active info">
+      <div id="txtStep3" class="step">3</div>
+      <div id="txtCaption3" class="caption">Time Away</div>
+    </li>
+    <li class="inactive">
+      <div id="txtStep4" class="step">4</div>
+      <div id="txtCaption4" class="caption hidden-xs">Payment</div>
+    </li>
+    <li class="inactive">
+      <div id="txtStep5" class="step">5</div>
+      <div id="txtCaption5" class="caption hidden-xs">Finish</div>
+    </li>
+  </ol>
+</div>
+<div id="stepTimeAway" class="margin-top-30 margin-bottom-50">
+<div class="h3">Step 3: Provide details about your time away from work</div>
+<div class="row margin-top-30">
+<div class="col-md-3">
+  <div class="h4">Instructions</div>
+  <div id="step1Instructions" class="margin-bottom-20 stepInstructions">
+    <div id="title1Instructions" class="titleInstructions"><i class="fa fa-chevron-down" aria-hidden="false"></i>Step 1 - <span id="step1Head">Leaves Details</span></div>
+    <div id="content1Instructions" class="margin-left-30 margin-top-10 contentInstructions">
+      <p id="step1Text">Please provide the dates and times that you will be away from work:</p>
+      <div class="js-example1">
+        <div class="pru-datepicker">
+          <div class="form-group">
+            <label class="control-label sr-only" for="leaveStartDate">Leave Dates <span class="sr-only">MM/DD/YYYY</span></label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="leaveStartDate" name="leaveStartDate" placeholder="MM/DD/YYYY" aria-describedby="err-leaveStartDate" aria-invalid="false">
+              <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+            <div id="err-leaveStartDate" class="help-block hidden"></div>
+          </div>
+        </div>
+      </div>
+      <div class="checkbox">
+        <label for="check">
+        <input type="checkbox" id="dKnow25" value="IDon'tKnow">
+        I don't know </label>
+      </div>
+    </div>
+  </div>
+  <div id="step2Instructions" class="margin-bottom-20 stepInstructions">
+    <div id="title2Instructions" class="titleInstructions"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 2 - <span  id="step2Head">Work Schedule</span></div>
+    <div id="content2Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
+      <p id="step2Text">The work schedule provided by your employer is shown on the calendar. Click on bar for details.</p>
+      <fieldset class="form-group">
+      <legend class="control-label control-label-legend sr-only">is work schedule correct?</legend>
+      <div class="radio">
+        <label for="male">
+        <input type="radio" name="gender" id="male">
+        Yes</label>
+      </div>
+      <div class="radio">
+        <label for="female">
+        <input type="radio" name="gender" id="female">
+        No</label>
+      </div>
+      </fieldset>
+    </div>
+  </div>
+  <div id="step3Instructions" class="margin-bottom-20">
+    <div id="title3Instructions" class="titleInstructions"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 3 - <span id="step3Head">PTO Dates</span></div>
+    <div id="content3Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
+      <p id="step3Text">The work schedule provided by your employer is shown on the calendar. Click on bar for details.</p>
+      <fieldset class="form-group">
+      <legend class="control-label control-label-legend sr-only">is work schedule correct?</legend>
+      <div class="radio">
+        <label for="male">
+        <input type="radio" name="gender" id="male">
+        Yes</label>
+      </div>
+      <div class="radio">
+        <label for="female">
+        <input type="radio" name="gender" id="female">
+        No</label>
+      </div>
+      </fieldset>
+    </div>
+  </div>
+  <hr>
+  <div id="colorLegend1" class="margin-bottom-20 hidden-xs hidden-sm">
+    <ul class="colorLegend">
+      <li><span class="colorToday"></span> Today</li>
+      <li><span class="colorHoliday"></span> Company Holiday</li>
+      <li><span class="colorAbsence"></span> Absence Duration</li>
+      <li><span class="colorRelevant"></span> Relevant Work Week</li>
+      <li><span class="colorWork"></span> Work Schedule</li>
+    </ul>
+  </div>
+</div>
+<div class="col-md-9">
+<div class="calendar-container mt-3 row">
+
+    <div id="calendar" class="col-xs-12"></div>
+
+    <!-- TIME AWAY FORMS -->
+
+    <div class="calendar-forms leave-dates-form col-xs-12">
+       <div class="row"> 
+        <h3 class="text-primary">Time Away from Work</h3>
+
+        <!-- SELECTING TIME AWAY TYPE -->
+
+        <div class="col-md-12">
+            <fieldset class="form-group time-away-type-wrapper">
+              <legend class="control-label control-label-legend">Type</legend>
+              <div class="radio">
+                <label for="time-away-continuous"><input type="radio" name="type-of-time-away" id="time-away-continuous" value="time-away-continuous" checked>Continuous (at least four consecutive days)</label>
+              </div>
+              <div class="radio">
+                <label for="time-away-intermittent"><input type="radio" name="type-of-time-away" id="time-away-intermittent" value="time-away-intermittent">Intermittent</label>
+              </div>
+              <div class="radio">
+                <label for="time-away-reduced-hours"><input type="radio" name="type-of-time-away" id="time-away-reduced-hours" value="time-away-reduced-hours">Reduced Hours</label>
+              </div>
+            </fieldset>
+
+            
+        </div>
+
+        <!-- CONTINUOUS FORM -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper continuous-form continous-01 js-example1">
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-continous-first-day">First day of absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-continous-first-day" placeholder="" aria-describedby="date-picker-continous-first-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-continous-first-day" class="help-block hidden"></div>
+              </div>
+            </div>
+
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-continous-last-day">Last day of absence before return <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-continous-last-day" placeholder="" aria-describedby="date-picker-continous-last-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-continous-last-day" class="help-block hidden"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="continuous-start-time">Start time on the first day of your absence</label>
+              <select class="form-control" id="continuous-start-time" name="continuous-start-time">
+                <option>12:00AM</option>
+                <option>01:00AM</option>
+                <option>02:00AM</option>
+                <option>03:00AM</option>
+                <option>04:00AM</option>
+                <option>05:00AM</option>
+                <option>06:00AM</option>
+                <option>07:00AM</option>									    
+                <option>08:00AM</option>
+                <option selected>09:00AM</option>									    
+                <option>10:00AM</option>									    
+                <option>11:00AM</option>									    
+                <option>12:00PM</option>
+                <option>01:00PM</option>
+                <option>02:00PM</option>
+                <option>03:00PM</option>
+                <option>04:00PM</option>
+                <option>05:00PM</option>
+                <option>06:00PM</option>
+                <option>07:00PM</option>									    
+                <option>08:00PM</option>									    
+                <option>09:00PM</option>									    
+                <option>10:00PM</option>									    
+                <option>11:00PM</option>											    
+              </select>									  
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="continuous-end-time">End time on last day before your return</label>
+              <select class="form-control" id="continuous-end-time" name="continuous-end-time">
+                    <option>12:00AM</option>
+                    <option>01:00AM</option>
+                    <option>02:00AM</option>
+                    <option>03:00AM</option>
+                    <option>04:00AM</option>
+                    <option>05:00AM</option>
+                    <option>06:00AM</option>
+                    <option>07:00AM</option>									    
+                    <option>08:00AM</option>
+                    <option>09:00AM</option>									    
+                    <option>10:00AM</option>									    
+                    <option>11:00AM</option>									    
+                    <option>12:00PM</option>
+                    <option>01:00PM</option>
+                    <option>02:00PM</option>
+                    <option>03:00PM</option>
+                    <option>04:00PM</option>
+                    <option selected>05:00PM</option>
+                    <option>06:00PM</option>
+                    <option>07:00PM</option>									    
+                    <option>08:00PM</option>									    
+                    <option>09:00PM</option>									    
+                    <option>10:00PM</option>									    
+                    <option>11:00PM</option>										    
+              </select>									  
+            </div>
+
+        </div>
+
+        <!-- INTERMITTENT FORM -->
+
+        <!-- FIRST INTERMITTENT COLUMN -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-01" style="display:none;">
+            <div class="checkbox intermittent-all-day-checkbox-wrapper">
+              <label for="intermittent-all-day-checkbox">
+                <input type="checkbox" id="intermittent-all-day-checkbox" name="intermittent-all-day-checkbox"> All day
+              </label>
+            </div>
+            <div class="fieldset intermittent-times-selections">
+                <div class="form-group">
+                  <label class="control-label" for="intermittent-start-time">Start time</label>
+                  <select class="form-control intermittent-time-select" id="intermittent-start-time" name="intermittent-start-time">
+                    <option>12:00AM</option>
+                    <option>01:00AM</option>
+                    <option>02:00AM</option>
+                    <option>03:00AM</option>
+                    <option>04:00AM</option>
+                    <option>05:00AM</option>
+                    <option>06:00AM</option>
+                    <option>07:00AM</option>									    
+                    <option>08:00AM</option>
+                    <option selected>09:00AM</option>									    
+                    <option>10:00AM</option>									    
+                    <option>11:00AM</option>									    
+                    <option>12:00PM</option>
+                    <option>01:00PM</option>
+                    <option>02:00PM</option>
+                    <option>03:00PM</option>
+                    <option>04:00PM</option>
+                    <option>05:00PM</option>
+                    <option>06:00PM</option>
+                    <option>07:00PM</option>									    
+                    <option>08:00PM</option>									    
+                    <option>09:00PM</option>									    
+                    <option>10:00PM</option>									    
+                    <option>11:00PM</option>									    
+                  </select>									  
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label" for="intermittent-end-time">End time</label>
+                  <select class="form-control intermittent-time-select" id="intermittent-end-time" name="intermittent-end-time">
+
+                    <option>12:00AM</option>
+                    <option>01:00AM</option>
+                    <option>02:00AM</option>
+                    <option>03:00AM</option>
+                    <option>04:00AM</option>
+                    <option>05:00AM</option>
+                    <option>06:00AM</option>
+                    <option>07:00AM</option>									    
+                    <option>08:00AM</option>
+                    <option>09:00AM</option>									    
+                    <option>10:00AM</option>									    
+                    <option>11:00AM</option>									    
+                    <option>12:00PM</option>
+                    <option>01:00PM</option>
+                    <option>02:00PM</option>
+                    <option>03:00PM</option>
+                    <option>04:00PM</option>
+                    <option selected>05:00PM</option>
+                    <option>06:00PM</option>
+                    <option>07:00PM</option>									    
+                    <option>08:00PM</option>									    
+                    <option>09:00PM</option>									    
+                    <option>10:00PM</option>									    
+                    <option>11:00PM</option>									    
+                  </select>									  
+                </div>
+
+            </div>
+            
+
+        </div>
+
+        <!-- SECOND INTERMITTENT COLUMN -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-02" style="display:none;">
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Does this repeat?</legend>
+              <div class="radio">
+                <label for="intermittent-repeat-yes"><input type="radio" name="intermittent-repeat-choices" id="intermittent-repeat-yes" value="intermittent-repeat-yes">Yes</label>
+              </div>
+              <div class="radio">
+                <label for="intermittent-repeat-no"><input type="radio" name="intermittent-repeat-choices" id="intermittent-repeat-no" value="intermittent-repeat-no">No</label>
+              </div>
+              
+            </fieldset>
+
+            <div class="intermittent-repeat-options">
+                <legend class="control-label control-label-legend">Repeats</legend>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-sunday"> Sunday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-monday"> Monday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-tuesday"> Tuesday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-wednesday"> Wednesday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-thursday"> Thursday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-friday"> Friday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="intermittent-repeat-saturday"> Saturday
+                  </label>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- THIRD INTERMITTENT COLUMN -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-03 js-example1" style="display:none;">
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-intermittent-first-day">Start date <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-intermittent-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-intermittent-first-day"class="help-block hidden"></div>
+              </div>
+            </div>
+
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-intermittent-last-day">Last date <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-intermittent-last-day" placeholder="" aria-describedby="date-picker-intermittent-last-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-intermittent-last-day" class="help-block hidden"></div>
+              </div>
+            </div>
+
+
+        </div>
+
+        <!-- REDUCED FORM -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper reduced-form reduced-01 mb-3 js-example1" style="display:none;">
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-reduced-first-day">Start date <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-reduced-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-reduced-first-day"class="help-block hidden"></div>
+              </div>
+            </div>
+
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-reduced-last-day">Last date <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-reduced-last-day" placeholder="" aria-describedby="date-picker-reduced-last-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-reduced-last-day" class="help-block hidden"></div>
+              </div>
+            </div>
+			<div class="fieldset reduced-times-selections">
+                <div class="form-group">
+                  <label class="control-label" for="reduced-start-time">Start time</label>
+                  <select class="form-control reduced-time-select" id="reduced-start-time" name="reduced-start-time">
+                    <option>12:00AM</option>
+                    <option>01:00AM</option>
+                    <option>02:00AM</option>
+                    <option>03:00AM</option>
+                    <option>04:00AM</option>
+                    <option>05:00AM</option>
+                    <option>06:00AM</option>
+                    <option>07:00AM</option>									    
+                    <option>08:00AM</option>
+                    <option selected>09:00AM</option>									    
+                    <option>10:00AM</option>									    
+                    <option>11:00AM</option>									    
+                    <option>12:00PM</option>
+                    <option>01:00PM</option>
+                    <option>02:00PM</option>
+                    <option>03:00PM</option>
+                    <option>04:00PM</option>
+                    <option>05:00PM</option>
+                    <option>06:00PM</option>
+                    <option>07:00PM</option>									    
+                    <option>08:00PM</option>									    
+                    <option>09:00PM</option>									    
+                    <option>10:00PM</option>									    
+                    <option>11:00PM</option>									    
+                  </select>									  
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label" for="reduced-end-time">End time</label>
+                  <select class="form-control reduced-time-select" id="reduced-end-time" name="reduced-end-time">
+                    <option>12:00AM</option>
+                    <option>01:00AM</option>
+                    <option>02:00AM</option>
+                    <option>03:00AM</option>
+                    <option>04:00AM</option>
+                    <option>05:00AM</option>
+                    <option>06:00AM</option>
+                    <option>07:00AM</option>									    
+                    <option>08:00AM</option>
+                    <option>09:00AM</option>									    
+                    <option>10:00AM</option>									    
+                    <option>11:00AM</option>									    
+                    <option>12:00PM</option>
+                    <option>01:00PM</option>
+                    <option>02:00PM</option>
+                    <option>03:00PM</option>
+                    <option>04:00PM</option>
+                    <option selected>05:00PM</option>
+                    <option>06:00PM</option>
+                    <option>07:00PM</option>									    
+                    <option>08:00PM</option>									    
+                    <option>09:00PM</option>									    
+                    <option>10:00PM</option>									    
+                    <option>11:00PM</option>									    
+                  </select>									  
+                </div>
+
+            </div>
+
+        </div>
+	</div>
+        <!-- ENTER AND CANCEL BUTTONS FOR TIME AWAY -->
+
+        <div class="row margin-top-20"> 
+            <div class="col-xs-4">
+                <button class="btn btn-default" type="button" id="btnAbsenceCancel">Cancel</button>
+            </div>
+            <div class="col-xs-4" align="center">
+                <button class="btn btn-default hide" type="button" id="btnAbsenceDelete">Delete</button>
+            </div>
+            <div class="col-xs-4" align="right">
+                <button class="btn btn-primary" type="button" id="enterAbsenceButton">Enter</button>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+    <!-- END OF TIME AWAY FRORMS -->
+
+
+    <div class="calendar-forms work-schedule-form">
+        WORK SCHEDULE
+    </div>
+
+    <div class="calendar-forms pto-form">
+        PTO FORM
+    </div>
+
+</div>
+<div class="row hidden-md hidden-lg">
+	<div class="col-xs-12">
+    	<div id="colorLegend1" class="margin-top-20">
+            <ul class="colorLegend">
+              <li><span class="colorToday"></span> Today</li>
+              <li><span class="colorHoliday"></span> Company Holiday</li>
+              <li><span class="colorAbsence"></span> Absence Duration</li>
+              <li><span class="colorRelevant"></span> Relevant Work Week</li>
+              <li><span class="colorWork"></span> Work Schedule</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="padding-bottom-30">
+  <button class="btn btn-default" type="button" id="btnBack">Back</button>
+  <button class="btn btn-primary" type="button" id="btnSaveAndContinue" disabled>Save &amp; Continue</button>
+</div>
+</div>
+</div>
+</div>
+<div style="display:none" id="toFlexJson">{"paidTimeDays":[],"firstDayWeek":{"absenceStartDate":"Aug 02, 2018","startDayOfWeek":0,"lastWorkDate":"Aug 01, 2018","returnToWorkDate":"Aug 27, 2018","weekStartDate":"Aug 05, 2018"},"absenceStartDate":"Aug 02, 2018","errorMessages":null,"lastWorkDate":"Aug 01, 2018","workSchedule":[{"sequenceNum":1,"eventId":null,"weekStartDate":"Jul 29, 2018","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":1,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":2,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":3,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":4,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":5,"startTime":"8:0"}]},{"sequenceNum":1,"eventId":null,"weekStartDate":"Feb 18, 2018","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":1,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":2,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":3,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":4,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":5,"startTime":"11:30"}]},{"sequenceNum":1,"eventId":null,"weekStartDate":"Jan 08, 2017","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":1,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":2,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":3,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":4,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":5,"startTime":"8:0"}]}],"events":[],"returnToWorkDate":"Aug 27, 2018","holidays":[],"questions":[{"selectedValue":null,"type":"TimeAway","description":"Leave Dates","text":"Please provide the dates and times that you will be away from work:","order":1,"refId":"403"},{"selectedValue":null,"type":"WorkSchedule","description":"Work Schedule","text":"Is this the correct work schedule?","order":2,"refId":"402"},{"selectedValue":null,"type":"PTO","description":"PTO Dates","text":"Please provide the dates that you will be using PTO time:","order":3,"refId":"405"}],"ptoTypes":[{"label":"Sick","code":"ZU001"},{"label":"Vacation","code":"ZU002"},{"label":"PTO","code":"ZU003"},{"label":"Floating Holiday","code":"ZU006"}]}</div>
+</main>
+<div id="contactUsModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="btnClose1"><span class="fa fa-times" aria-hidden="true"></span> close</button>
+        <h2 class="modal-title" id="gridSystemModalLabel">Contact Us</h2>
+      </div>
+      <div class="modal-body">
+        <h3 id="topText">Do you need to speak with someone for additional help? We are here to help you. Please call us:</h3>
+        <p id="contact1"><strong>Customer Service:</strong></p>
+        <ul>
+          <li id="contact1Num">Number: 1-877-507-4778</li>
+          <li id="contact1Time">Hours: Monday - Friday 8:00 AM - 8:00 PM Eastern Time</li>
+        </ul>
+        <p id="contact2"><strong>Technical Support:</strong></p>
+        <ul>
+          <li id="contact2Num">Number: 1-877-232-3619</li>
+          <li id="contact2Time">Hours: Monday - Friday 8:00 AM - 8:00 PM Eastern Time</li>
+        </ul>
+        <p id="bottomText"><strong>NOTE:</strong> For inquiries about life insurance products, we can only release information over the phone to the policy owner. Requests to have information mailed to the policy owner can be made by others, provided the information is mailed to the policy owner's address of record.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btnClose2" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer id="footerText" role="contentinfo">
+  <div role="navigation" dir="ltr" data-qa="footer-links" class="footer-section footer-section-legal" aria-label="help">
+    <div class="container">
+      <p>The following links will open in a new window:</p>
+      <div class="row">
+        <ul class="col-xs-12  list-block-xs-inline-lg list-unstyled">
+          <li><a href="#" onClick="javascript:openTermsAndConditions();"> Terms and Conditions <i class="fa fa-external-link"></i><span class="sr-only">open in a new browser window</span></a></li>
+          <li><a href="#" onClick="javascript:openPrivacypolicy();"> Privacy Statement <i class="fa fa-external-link"></i><span class="sr-only">open in a new browser window</span></a></li>
+          <li><a href="https://www.prudential.com/links/privacy-center" target="_blank"> Privacy Center <i class="fa fa-external-link"></i><span class="sr-only">open in a new browser window</span></a></li>
+          <li><a href="#" onClick="javascript:openBusinessIntegrity();"> Business Integrity <i class="fa fa-external-link"></i><span class="sr-only">open in a new browser window</span></a></li>
+          <li><a href="javascript:sendAccessibilityURL()"> Accessibility Help <i class="fa fa-external-link"></i><span class="sr-only">open in a new browser window</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div data-qa="footer-disclaimer" class="footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="footer_disclaimer_container">Prudential, the Prudential logo and the Rock symbol are service marks of Prudential Financial, Inc. and its related entities, registered in many jurisdictions worldwide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-qa="footer-copyright" class="footer-section">
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-xs-12">&copy;  -->
+        <div role="contentinfo" class="col-xs-12" id="footerCopy">&copy; <span id="currentYear">2018</span> Prudential Financial, Inc. and its related entities.<br>
+          NAIC# 68241 California COA# 1179</div>
+        <!--  Getting the text from properties file -->
+      </div>
+    </div>
+  </div>
+</footer>
+<script language="JavaScript" type="text/javascript" src="mybenefits/web/scripts/myBenefits/logInValidation.js"></script>
+<script src="web/scripts/jquery.min.js" language="JavaScript" type="text/javascript"></script>
+<script type="text/javascript" src="web/scripts/moment.min.js"></script>
+<!--<script type="text/javascript" src="web/scripts/jquery.min.js"></script>-->
+<script type="text/javascript" src="web/scripts/fullcalendar.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="mybenefits/web/scripts/myBenefits/webAccessibility.js"></script>
+<script src="web/scripts/bootstrap.min.js" language="JavaScript" type="text/javascript"></script>
+<script src="web/scripts/bootstrap-datepicker.js" language="javascript" type="text/javascript"></script>
+<script src="web/scripts/pru-datepicker.js" language="javascript" type="text/javascript"></script>
+<script src="web/scripts/eeportal.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+document.title = "File a Claim / Report an Absence : Workplace Benefits - Prudential Financial";
+$( document ).ready(function() {
+	//$('#agreementModal').modal({backdrop: 'static', keyboard: false});
+	//$('#agreementModal').modal('show');
+	var d = new Date();
+	var y = d.getFullYear();
+	document.getElementById("currentYear").innerHTML = y;
+	// Firefox 1.0+
+	var isFirefox = typeof InstallTrigger !== 'undefined';
+	// Chrome 1+
+	var isChrome = !!window.chrome && !!window.chrome.webstore;
+	if(!isFirefox && !isChrome)
+	{
+		document.getElementById("pru-logo").innerHTML = '<a href="javascript:void(0);" title="Prudential Financial"><img src="web/images/pru-logo-white.png" alt="Prudential Financial" title="Prudential Financial"></a>';
+	}
+	$(".toggle-nav").click(function(){$("html, .nav-mobile").toggleClass("nav-mobile-opened")});
+	toggleTertiaryNav("fileClaim",'2');
+	var pruDatePicker1 = $('.js-example1 div.pru-datepicker').pruDatePicker({
+        autoclose: true, //close datepicker when date is selected
+		format: 'mm/dd/yyyy', //this only works when date is selected in pop-up, does not affect intial field format
+		forceParse: false, //if true, if no date is selected, date in field is cleared
+        //orientation: 'bottom left',
+		maxViewMode: 2, // limits click on month to change to year options (not decades, etc)
+		//endDate: "today",
+		//clearBtn: true,
+		//todayHighlight: true,
+        validators: [
+          {
+            regex: /^(?:(?:0?[13578]|1[02])|(?:0?[469]|11)(?!\/31)|(?:0?2)(?:(?!\/3[01]|\/29\/(?:(?:0[^48]|[13579][^26]|[2468][^048])00|(?:\d{2}(?:0[^48]|[13579][^26]|[2468][^048]))))))\/(?:0?[1-9]|[12][0-9]|3[01])\/\d{4}$/,
+            assert: '+',
+            errorMsg: 'Please enter a valid Date'
+          }
+        ],
+        templates: {
+          leftArrow: '<i class="fa fa-chevron-left"></i>',
+          rightArrow: '<i class="fa fa-chevron-right"></i>'
+        }
+      }).on('changeDate', function (ev) {
+		 if($(this).find("input").attr('id') == "leaveStartDate")
+		 {
+		 	var lastDay = moment(ev.date).add(3, 'days');
+	     	takingSingleDaySelectionIntoForms(moment(ev.date).format("MM/DD/YYYY"), lastDay.format("MM/DD/YYYY"));
+		 }
+         $(this).blur();
+         $(this).pruDatePicker('hide');
+     });
+	 var jsonString = document.getElementById("toFlexJson").innerHTML;
+	 var jsonObject = JSON.parse(jsonString);
+	 console.log(jsonObject);
+	 document.getElementById("step1Head").innerHTML = jsonObject.questions[0].description;
+	 document.getElementById("step1Text").innerHTML = jsonObject.questions[0].text;
+	 document.getElementById("step2Head").innerHTML = jsonObject.questions[1].description;
+	 document.getElementById("step2Text").innerHTML = jsonObject.questions[1].text;
+	 document.getElementById("step3Head").innerHTML = jsonObject.questions[2].description;
+	 document.getElementById("step3Text").innerHTML = jsonObject.questions[2].text;
+	 $('#calendar').fullCalendar({
+	    selectable: true,
+		displayEventTime : false,
+	    header: {
+	      left: 'prev,next today',
+	      center: 'title',
+	      right: 'month,agendaWeek,agendaDay'
+	    },
+	    dayClick: function(date) {
+	    	// For Continuous absence, the absence needs to be at least 4 days long
+
+	    	// Because we count the first day, this number here is three
+
+	    	// Here I enter the function that's down in the Javascript at the bottom of the page
+
+	      	var lastDay = moment(date).add(3, 'days');
+	      	takingSingleDaySelectionIntoForms(date.format("MM/DD/YYYY"), lastDay.format("MM/DD/YYYY"));
+	    },
+	    select: function(startDate, endDate) {
+	      // We can have things happen here when dates are selected
+	      // I didn't put any logic here
+	    },
+	    buttonText: {
+		    today: 	'Today',
+		    month: 	'Month',
+			week: 	'Week',
+			day:	'Day',
+			list:	'List'
+		},
+		// editable: true,
+		eventClick: function(calEvent, jsEvent, view) {
+
+			// Here on an even click, I'm just alerting the info for the event.
+
+			// We should probably have logic to re-enter the form information
+
+			var startEventClicked = moment(calEvent.start).format('MM/DD/YYYY hh:mmA');
+			var endEventClicked = moment(calEvent.end).format('MM/DD/YYYY hh:mmA');
+		    alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
+
+
+		    // These commented lines I've left over from the documentation...
+
+		    // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+		    // alert('View: ' + view.name);
+
+		    // change the border color just for fun
+		    // $(this).css('border-color', 'red');
+
+		 },
+		//aspectRatio: 1,
+		height: "auto",
+		events: [
+				    
+				    // This is where we'll need to fetch existing absences from our database.
+
+				    // There can be different sources (JSON, an array, functions)
+
+				    // See here for documentation -- https://fullcalendar.io/docs/eventSources
+
+				    // These are placeholders.
+					{
+						title: 'Last Work Day',
+						start: moment(jsonObject.lastWorkDate, 'MMM DD, YYYY'),
+						textColor: "#333",
+						color: "#fff"
+					},
+					{
+						title: 'First Absence',
+						start: moment(jsonObject.absenceStartDate, 'MMM DD, YYYY'),
+						textColor: "#333",
+						color: "#fff"
+					},
+					{
+						title: 'Return to Work',
+						start: moment(jsonObject.returnToWorkDate, 'MMM DD, YYYY'),
+						textColor: "#333",
+						color: "#fff"
+					}/*,
+				    {
+				      title: 'Intermittent Time Away',
+				      start: moment('08/03/2018 12:00AM', 'MM/DD/YYYY hh:mmA'),
+				      end: moment('08/03/2018 11:59PM', 'MM/DD/YYYY hh:mmA'),
+				      // description: 'This is a cool event',
+				      backgroundColor: "#07639D"
+
+				    },
+
+				    {
+				      	title: 'Continuous Time Away',
+				      	start: moment('08/20/2018 09:00AM', 'MM/DD/YYYY hh:mmA'),
+						end: moment('08/24/2018 05:00PM', 'MM/DD/YYYY hh:mmA'),
+				     	// description: 'This is another cool event',
+				      	backgroundColor: "#07639D"
+				    }*/
+
+
+			    // More events here
+
+			  ]
+	  });
+	 
+});
+function showInstructionStep(step)
+{
+	$(".titleInstructions").find("i").removeClass("fa-chevron-down").addClass("fa-chevron-right");
+	$(".contentInstructions").slideUp();
+	$("#content"+step+"Instructions").slideDown();
+	$("#title"+step+"Instructions").find("i").removeClass("fa-chevron-right").addClass("fa-chevron-down");
+}
+function checkToEnableButton(){
+}
+window.onload = function() {
+	$('.fontsLoading').removeClass('fontsLoading');
+};
+
+// WHEN THE BODY PART OF THE CALENDAR IS CLICKED
+
+function takingSingleDaySelectionIntoForms(startDate, endDate) {
+ 
+	var step01active = $("#title1Instructions").find("i").hasClass("fa-chevron-down");
+	var step02active = $("#title2Instructions").find("i").hasClass("fa-chevron-down");
+	var step03active = $("#title3Instructions").find("i").hasClass("fa-chevron-down");
+
+	 if (step01active == true) {
+		$(".calendar-forms").hide();
+		$("#calendar").hide();
+		$(".leave-dates-form").show();
+		
+		$("#date-picker-continous-first-day").val(startDate);
+		if($("#date-picker-continous-last-day").val() == "")
+			$("#date-picker-continous-last-day").val(endDate);
+		$("#date-picker-intermittent-first-day").val(startDate);
+		if($("#date-picker-intermittent-last-day").val() == "")
+			$("#date-picker-intermittent-last-day").val(startDate);
+		$("#date-picker-reduced-first-day").val(startDate);
+
+	 } else if (step02active == true) {
+		$(".calendar-forms").hide();
+		$("#calendar").hide();
+		$(".work-schedule-form").show();
+	} else {
+		$(".calendar-forms").hide();
+		$("#calendar").hide();
+		$(".pto-form").show();
+	}
+}
+
+
+// WHEN CANCEL BUTTON IS CLICKED
+
+$(".panel-heading, .cancel-button").click(function() {
+	$(".calendar-forms").hide();
+	$("#calendar").show();
+});
+
+// LOGIC FOR WHEN EACH TYPE OF TIME AWAY IS CHOSEN
+
+$("input[name='type-of-time-away']").on("change", function(){
+	$(".absence-type-based-form-wrapper").hide();
+	if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-continuous"){
+	   $(".continuous-form").show();
+	} else if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-intermittent") {
+		$(".intermittent-form").removeClass("hidden").show();
+	} else {
+		$(".reduced-form").show();
+	}
+});
+
+// LOGIC FOR INTERMITTENT ALL DAY OPTION
+
+$("#intermittent-all-day-checkbox").on("change", function(){
+	var isAllDayChecked = $(this).prop('checked');
+	if (isAllDayChecked == true){
+	   $(".intermittent-times-selections").prop('disabled', true).hide();
+	} else {
+		$(".intermittent-times-selections").prop('disabled', false).show();
+	}
+});
+
+
+// LOGIC FOR INTERMITTENT REPEATING OPTIONS
+
+$("input[name='intermittent-repeat-choices']").on("change", function(){
+	
+	if ($('input:radio[name=intermittent-repeat-choices]:checked').val() == "intermittent-repeat-yes"){
+	   $(".intermittent-repeat-options").show();
+	} else {
+		$(".intermittent-repeat-options").hide();
+	}
+});
+
+// WHEN ENTER BUTTON IS CLICKED IN ABSENCE FORMS
+
+$("#enterAbsenceButton").click(function() {
+	
+	// FOR CONTINUOUS
+
+	if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-continuous") {
+		// For Continuous absence, the absence needs to be at least 4 days long
+		var firstDateUnformatted = $("#date-picker-continous-first-day").val();
+		var endDateUnformatted = $("#date-picker-continous-last-day").val();
+		var firstDayForCalc = moment(firstDateUnformatted, 'MM/DD/YYYY');
+		var lastDayForCalc = moment(endDateUnformatted, 'MM/DD/YYYY');
+		
+		// Calculating days apart
+
+		var numberOfDaysApart = lastDayForCalc.diff(firstDayForCalc, 'days');
+
+		// Start and end times
+
+		 var startTimeUnformatted = $("#continuous-start-time option:selected").text();
+		 var endTimeUnformatted = $("#continuous-end-time option:selected").text();
+
+		 startConcatenated = firstDateUnformatted + " " + startTimeUnformatted;
+		 endConcatenated = endDateUnformatted + " " + endTimeUnformatted;
+
+		// Here we're checking that dates are four days a part, but because we include the first day, we do a three day check
+		
+		if (numberOfDaysApart < 3) {
+			alert("ERROR: for continuous absence, dates a part should be 4 or more days.");
+			return
+		} else {
+			// If we pass the four day test, we render event. Note here the method is renderEvent with no 's' at the end
+			$("#calendar").show().fullCalendar('renderEvent',
+				{
+				  title: 'Continuous Time Away',
+				  start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
+				  end: moment(endConcatenated, 'MM/DD/YYYY hh:mmA'),
+				  description: 'Continuous Time Away',
+				  backgroundColor: "#07639D"
+				},
+			true);
+
+		alert("We should update the database at this point with a continuous event.");
+
+		}
+		
+
+	// FOR INTERMITTENT
+
+	} else if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-intermittent") {
+
+		var firstDateUnformatted = $("#date-picker-intermittent-first-day").val();
+		var endDateUnformatted = $("#date-picker-intermittent-last-day").val();
+		var firstDayForCalc = moment(firstDateUnformatted, 'MM/DD/YYYY');
+		var lastDayForCalc = moment(endDateUnformatted, 'MM/DD/YYYY');
+
+		 // This is the array in which we'll be putting all the new intermittent absences
+
+		 var newIntermittentAbsences = [];
+
+		 // Now we'll loop through days between beginning and end
+
+		 while(lastDayForCalc >= firstDayForCalc) {
+
+
+			var firstDayForCalFormatted = moment(firstDayForCalc).format("MM/DD/YYYY");
+
+			var startTimeUnformatted = $("#intermittent-start-time option:selected").text();
+			var endTimeUnformatted = $("#intermittent-end-time option:selected").text();
+
+
+			// Because we're looping through this day by day, the start and end dates should be the same
+
+			startConcatenated = firstDayForCalFormatted + " " + startTimeUnformatted;
+			endConcatenated = firstDayForCalFormatted + " " + endTimeUnformatted;
+
+			// There should be logic to make sure the start and end times aren't the same.
+
+			// This should porbably be handled in the form, but I wrote logic here to add one hour.
+
+			if (startConcatenated == endConcatenated) {
+				var fixedProblemEndTime = moment(endTimeUnformatted, "hh:mmA").add(1, 'hour'); 		
+				endConcatenated = firstDayForCalFormatted + " " + moment(fixedProblemEndTime).format("hh:mmA");
+			}
+
+
+			// Here we push the object into the array
+
+			newIntermittentAbsences.push( {
+				title: 'Intermittent Time Away',
+				start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
+				end: moment(endConcatenated, 'MM/DD/YYYY hh:mmA'),
+				description: 'Another intermittent absence',
+				backgroundColor: '#07639D'
+
+			 } );
+
+			// Now we go to the next day by adding a day
+
+			firstDayForCalc = firstDayForCalc.add(1, 'day'); 
+		 }
+
+		 // Once we complete the loop, we render the array of events onto the calendar.
+
+		 // Note this method is renderEvents WITH AN 's' at the end
+
+		$("#calendar").show().fullCalendar('renderEvents', newIntermittentAbsences,
+			true);
+
+		// I have not coded the logic for repeating intermittent or how we handle the FULL DAY checkmark events...
+
+		alert("We should update the database at this point with these intermittent events.");
+
+	} else if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-reduced-hours") {
+		
+		// I haven't coded this logic
+
+		// This is a placeholder.
+
+		$("#calendar").show().fullCalendar('renderEvent',
+				{
+				  title: 'Time Away',
+				  start: '2018-08-25',
+				  description: 'This is a not an event',
+				  backgroundColor: "#FF0000"
+				},
+			true);
+
+		alert("we should update the database at this point with a reduced hours event.");
+
+	}
+
+	$(".calendar-forms").hide();
+
+
+});
+</script>
+</body>
+</html>
