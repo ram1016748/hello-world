@@ -14,6 +14,16 @@
 #btnSaveAndContinue {
 	float:right;
 }
+.time-control{
+	display:inline-block;
+	max-width:70px;
+}
+.pru-datepicker .input-group{
+	max-width:216px;
+}
+.fc-day-grid-event{
+	padding-left: 5px;
+}
 </style>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="web/scripts/html5shiv.js"></script>
@@ -178,7 +188,7 @@
 <div class="col-md-3">
   <div class="h4">Instructions</div>
   <div id="step1Instructions" class="margin-bottom-20 stepInstructions">
-    <div id="title1Instructions" class="titleInstructions"><i class="fa fa-chevron-down" aria-hidden="false"></i>Step 1 - <span id="step1Head">Leaves Details</span></div>
+    <div id="title1Instructions" class="titleInstructions" onclick="JavaScript:showInstructionStep(1);"><i class="fa fa-chevron-down" aria-hidden="false"></i>Step 1 - <span id="step1Head">Leaves Details</span></div>
     <div id="content1Instructions" class="margin-left-30 margin-top-10 contentInstructions">
       <p id="step1Text">Please provide the dates and times that you will be away from work:</p>
       <div class="js-example1">
@@ -200,7 +210,7 @@
     </div>
   </div>
   <div id="step2Instructions" class="margin-bottom-20 stepInstructions">
-    <div id="title2Instructions" class="titleInstructions"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 2 - <span  id="step2Head">Work Schedule</span></div>
+    <div id="title2Instructions" class="titleInstructions" onclick="JavaScript:showInstructionStep(2);"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 2 - <span  id="step2Head">Work Schedule</span></div>
     <div id="content2Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
       <p id="step2Text">The work schedule provided by your employer is shown on the calendar. Click on bar for details.</p>
       <fieldset class="form-group">
@@ -218,8 +228,8 @@
       </fieldset>
     </div>
   </div>
-  <div id="step3Instructions" class="margin-bottom-20">
-    <div id="title3Instructions" class="titleInstructions"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 3 - <span id="step3Head">PTO Dates</span></div>
+  <div id="step3Instructions" class="margin-bottom-20 stepInstructions hide">
+    <div id="title3Instructions" class="titleInstructions" onclick="JavaScript:showInstructionStep(3);"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 3 - <span id="step3Head">PTO Dates</span></div>
     <div id="content3Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
       <p id="step3Text">The work schedule provided by your employer is shown on the calendar. Click on bar for details.</p>
       <fieldset class="form-group">
@@ -243,7 +253,7 @@
       <li><span class="colorToday"></span> Today</li>
       <li><span class="colorHoliday"></span> Company Holiday</li>
       <li><span class="colorAbsence"></span> Absence Duration</li>
-      <li><span class="colorRelevant"></span> Relevant Work Week</li>
+      <li><span class="colorContinuous"></span> Time Away</li>
       <li><span class="colorWork"></span> Work Schedule</li>
     </ul>
   </div>
@@ -283,7 +293,7 @@
         <div class="col-md-9 absence-type-based-form-wrapper continuous-form continous-01 js-example1">
             <div class="pru-datepicker">
               <div class="form-group">
-                <label class="control-label" for="date-picker-continous-first-day">First day of absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <label class="control-label" for="date-picker-continous-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
                 <div class="input-group">
                   <input type="text" class="form-control" id="date-picker-continous-first-day" placeholder="" aria-describedby="date-picker-continous-first-day" aria-invalid="false">
                   <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
@@ -294,7 +304,7 @@
 
             <div class="pru-datepicker">
               <div class="form-group">
-                <label class="control-label" for="date-picker-continous-last-day">Last day of absence before return <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <label class="control-label" for="date-picker-continous-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
                 <div class="input-group">
                   <input type="text" class="form-control" id="date-picker-continous-last-day" placeholder="" aria-describedby="date-picker-continous-last-day" aria-invalid="false">
                   <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
@@ -303,71 +313,213 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="control-label" for="continuous-start-time">Start time on the first day of your absence</label>
-              <select class="form-control" id="continuous-start-time" name="continuous-start-time">
-                <option>12:00AM</option>
-                <option>01:00AM</option>
-                <option>02:00AM</option>
-                <option>03:00AM</option>
-                <option>04:00AM</option>
-                <option>05:00AM</option>
-                <option>06:00AM</option>
-                <option>07:00AM</option>									    
-                <option>08:00AM</option>
-                <option selected>09:00AM</option>									    
-                <option>10:00AM</option>									    
-                <option>11:00AM</option>									    
-                <option>12:00PM</option>
-                <option>01:00PM</option>
-                <option>02:00PM</option>
-                <option>03:00PM</option>
-                <option>04:00PM</option>
-                <option>05:00PM</option>
-                <option>06:00PM</option>
-                <option>07:00PM</option>									    
-                <option>08:00PM</option>									    
-                <option>09:00PM</option>									    
-                <option>10:00PM</option>									    
-                <option>11:00PM</option>											    
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Start time for this absence</legend>
+              <label class="control-label sr-only" for="continuous-start-time-hour">Start hour</label>
+              <select class="form-control time-control" id="continuous-start-time-hour" name="continuous-start-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option selected>12</option>											    
               </select>									  
-            </div>
+              <label class="control-label sr-only" for="continuous-start-time-minute">Start minute</label>
+              <select class="form-control time-control" id="continuous-start-time-minute" name="continuous-start-time-minute">
+                <option selected>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="continuous-start-time-meridiem">Start Meridiem</label>
+              <select class="form-control time-control" id="continuous-start-time-meridiem" name="continuous-start-time-meridiem">
+                <option selected>AM</option>
+                <option>PM</option>										    
+              </select>								  
+            </fieldset>
 
-            <div class="form-group">
-              <label class="control-label" for="continuous-end-time">End time on last day before your return</label>
-              <select class="form-control" id="continuous-end-time" name="continuous-end-time">
-                    <option>12:00AM</option>
-                    <option>01:00AM</option>
-                    <option>02:00AM</option>
-                    <option>03:00AM</option>
-                    <option>04:00AM</option>
-                    <option>05:00AM</option>
-                    <option>06:00AM</option>
-                    <option>07:00AM</option>									    
-                    <option>08:00AM</option>
-                    <option>09:00AM</option>									    
-                    <option>10:00AM</option>									    
-                    <option>11:00AM</option>									    
-                    <option>12:00PM</option>
-                    <option>01:00PM</option>
-                    <option>02:00PM</option>
-                    <option>03:00PM</option>
-                    <option>04:00PM</option>
-                    <option selected>05:00PM</option>
-                    <option>06:00PM</option>
-                    <option>07:00PM</option>									    
-                    <option>08:00PM</option>									    
-                    <option>09:00PM</option>									    
-                    <option>10:00PM</option>									    
-                    <option>11:00PM</option>										    
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">End time for this absence</legend>
+              <label class="control-label sr-only" for="continuous-end-time-hour">End hour</label>
+              <select class="form-control time-control" id="continuous-end-time-hour" name="continuous-end-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option selected>11</option>									    
+                <option>12</option>											    
               </select>									  
-            </div>
+              <label class="control-label sr-only" for="continuous-end-time-minute">End minute</label>
+              <select class="form-control time-control" id="continuous-end-time-minute" name="continuous-end-time-minute">
+                <option>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option selected>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="continuous-end-time-meridiem">End Meridiem</label>
+              <select class="form-control time-control" id="continuous-end-time-meridiem" name="continuous-end-time-meridiem">
+                <option>AM</option>
+                <option selected>PM</option>										    
+              </select>								  
+            </fieldset>
 
         </div>
 
         <!-- INTERMITTENT FORM -->
 
-        <!-- FIRST INTERMITTENT COLUMN -->
+		<!-- FIRST INTERMITTENT COLUMN -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-03 js-example1" style="display:none;">
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-intermittent-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-intermittent-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-intermittent-first-day"class="help-block hidden"></div>
+              </div>
+            </div>
+
+            <div class="pru-datepicker">
+              <div class="form-group">
+                <label class="control-label" for="date-picker-intermittent-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="date-picker-intermittent-last-day" placeholder="" aria-describedby="date-picker-intermittent-last-day" aria-invalid="false">
+                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                </div>
+                <div id="err-date-picker-intermittent-last-day" class="help-block hidden"></div>
+              </div>
+            </div>
+
+
+        </div>
+
+        <!-- SECOND INTERMITTENT COLUMN -->
 
         <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-01" style="display:none;">
             <div class="checkbox intermittent-all-day-checkbox-wrapper">
@@ -376,73 +528,186 @@
               </label>
             </div>
             <div class="fieldset intermittent-times-selections">
-                <div class="form-group">
-                  <label class="control-label" for="intermittent-start-time">Start time</label>
-                  <select class="form-control intermittent-time-select" id="intermittent-start-time" name="intermittent-start-time">
-                    <option>12:00AM</option>
-                    <option>01:00AM</option>
-                    <option>02:00AM</option>
-                    <option>03:00AM</option>
-                    <option>04:00AM</option>
-                    <option>05:00AM</option>
-                    <option>06:00AM</option>
-                    <option>07:00AM</option>									    
-                    <option>08:00AM</option>
-                    <option selected>09:00AM</option>									    
-                    <option>10:00AM</option>									    
-                    <option>11:00AM</option>									    
-                    <option>12:00PM</option>
-                    <option>01:00PM</option>
-                    <option>02:00PM</option>
-                    <option>03:00PM</option>
-                    <option>04:00PM</option>
-                    <option>05:00PM</option>
-                    <option>06:00PM</option>
-                    <option>07:00PM</option>									    
-                    <option>08:00PM</option>									    
-                    <option>09:00PM</option>									    
-                    <option>10:00PM</option>									    
-                    <option>11:00PM</option>									    
-                  </select>									  
-                </div>
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Start time for this absence</legend>
+              <label class="control-label sr-only" for="intermittent-start-time-hour">Start hour</label>
+              <select class="form-control time-control" id="intermittent-start-time-hour" name="intermittent-start-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option selected>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="intermittent-start-time-minute">Start minute</label>
+              <select class="form-control time-control" id="intermittent-start-time-minute" name="intermittent-start-time-minute">
+                <option selected>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="intermittent-start-time-meridiem">Start Meridiem</label>
+              <select class="form-control time-control" id="intermittent-start-time-meridiem" name="intermittent-start-time-meridiem">
+                <option selected>AM</option>
+                <option>PM</option>										    
+              </select>								  
+            </fieldset>
 
-                <div class="form-group">
-                  <label class="control-label" for="intermittent-end-time">End time</label>
-                  <select class="form-control intermittent-time-select" id="intermittent-end-time" name="intermittent-end-time">
-
-                    <option>12:00AM</option>
-                    <option>01:00AM</option>
-                    <option>02:00AM</option>
-                    <option>03:00AM</option>
-                    <option>04:00AM</option>
-                    <option>05:00AM</option>
-                    <option>06:00AM</option>
-                    <option>07:00AM</option>									    
-                    <option>08:00AM</option>
-                    <option>09:00AM</option>									    
-                    <option>10:00AM</option>									    
-                    <option>11:00AM</option>									    
-                    <option>12:00PM</option>
-                    <option>01:00PM</option>
-                    <option>02:00PM</option>
-                    <option>03:00PM</option>
-                    <option>04:00PM</option>
-                    <option selected>05:00PM</option>
-                    <option>06:00PM</option>
-                    <option>07:00PM</option>									    
-                    <option>08:00PM</option>									    
-                    <option>09:00PM</option>									    
-                    <option>10:00PM</option>									    
-                    <option>11:00PM</option>									    
-                  </select>									  
-                </div>
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">End time for this absence</legend>
+              <label class="control-label sr-only" for="intermittent-end-time-hour">End hour</label>
+              <select class="form-control time-control" id="intermittent-end-time-hour" name="intermittent-end-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option selected>11</option>									    
+                <option>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="intermittent-end-time-minute">End minute</label>
+              <select class="form-control time-control" id="intermittent-end-time-minute" name="intermittent-end-time-minute">
+                <option>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option selected>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="intermittent-end-time-meridiem">End Meridiem</label>
+              <select class="form-control time-control" id="intermittent-end-time-meridiem" name="intermittent-end-time-meridiem">
+                <option>AM</option>
+                <option selected>PM</option>										    
+              </select>								  
+            </fieldset>
 
             </div>
             
 
         </div>
 
-        <!-- SECOND INTERMITTENT COLUMN -->
+        <!-- THIRD INTERMITTENT COLUMN -->
 
         <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-02" style="display:none;">
             <fieldset class="form-group">
@@ -499,40 +764,12 @@
 
         </div>
 
-        <!-- THIRD INTERMITTENT COLUMN -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-03 js-example1" style="display:none;">
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-intermittent-first-day">Start date <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-intermittent-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
-                </div>
-                <div id="err-date-picker-intermittent-first-day"class="help-block hidden"></div>
-              </div>
-            </div>
-
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-intermittent-last-day">Last date <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-intermittent-last-day" placeholder="" aria-describedby="date-picker-intermittent-last-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
-                </div>
-                <div id="err-date-picker-intermittent-last-day" class="help-block hidden"></div>
-              </div>
-            </div>
-
-
-        </div>
-
         <!-- REDUCED FORM -->
 
         <div class="col-md-9 absence-type-based-form-wrapper reduced-form reduced-01 mb-3 js-example1" style="display:none;">
             <div class="pru-datepicker">
               <div class="form-group">
-                <label class="control-label" for="date-picker-reduced-first-day">Start date <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <label class="control-label" for="date-picker-reduced-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
                 <div class="input-group">
                   <input type="text" class="form-control" id="date-picker-reduced-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
                   <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
@@ -543,7 +780,7 @@
 
             <div class="pru-datepicker">
               <div class="form-group">
-                <label class="control-label" for="date-picker-reduced-last-day">Last date <span class="text-muted">(MM/DD/YYYY)</span></label>
+                <label class="control-label" for="date-picker-reduced-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
                 <div class="input-group">
                   <input type="text" class="form-control" id="date-picker-reduced-last-day" placeholder="" aria-describedby="date-picker-reduced-last-day" aria-invalid="false">
                   <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
@@ -552,71 +789,185 @@
               </div>
             </div>
 			<div class="fieldset reduced-times-selections">
-                <div class="form-group">
-                  <label class="control-label" for="reduced-start-time">Start time</label>
-                  <select class="form-control reduced-time-select" id="reduced-start-time" name="reduced-start-time">
-                    <option>12:00AM</option>
-                    <option>01:00AM</option>
-                    <option>02:00AM</option>
-                    <option>03:00AM</option>
-                    <option>04:00AM</option>
-                    <option>05:00AM</option>
-                    <option>06:00AM</option>
-                    <option>07:00AM</option>									    
-                    <option>08:00AM</option>
-                    <option selected>09:00AM</option>									    
-                    <option>10:00AM</option>									    
-                    <option>11:00AM</option>									    
-                    <option>12:00PM</option>
-                    <option>01:00PM</option>
-                    <option>02:00PM</option>
-                    <option>03:00PM</option>
-                    <option>04:00PM</option>
-                    <option>05:00PM</option>
-                    <option>06:00PM</option>
-                    <option>07:00PM</option>									    
-                    <option>08:00PM</option>									    
-                    <option>09:00PM</option>									    
-                    <option>10:00PM</option>									    
-                    <option>11:00PM</option>									    
-                  </select>									  
-                </div>
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Start time for this absence</legend>
+              <label class="control-label sr-only" for="reduced-start-time-hour">Start hour</label>
+              <select class="form-control time-control" id="reduced-start-time-hour" name="reduced-start-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option selected>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="reduced-start-time-minute">Start minute</label>
+              <select class="form-control time-control" id="reduced-start-time-minute" name="reduced-start-time-minute">
+                <option selected>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="reduced-start-time-meridiem">Start Meridiem</label>
+              <select class="form-control time-control" id="reduced-start-time-meridiem" name="reduced-start-time-meridiem">
+                <option selected>AM</option>
+                <option>PM</option>										    
+              </select>								  
+            </fieldset>
 
-                <div class="form-group">
-                  <label class="control-label" for="reduced-end-time">End time</label>
-                  <select class="form-control reduced-time-select" id="reduced-end-time" name="reduced-end-time">
-                    <option>12:00AM</option>
-                    <option>01:00AM</option>
-                    <option>02:00AM</option>
-                    <option>03:00AM</option>
-                    <option>04:00AM</option>
-                    <option>05:00AM</option>
-                    <option>06:00AM</option>
-                    <option>07:00AM</option>									    
-                    <option>08:00AM</option>
-                    <option>09:00AM</option>									    
-                    <option>10:00AM</option>									    
-                    <option>11:00AM</option>									    
-                    <option>12:00PM</option>
-                    <option>01:00PM</option>
-                    <option>02:00PM</option>
-                    <option>03:00PM</option>
-                    <option>04:00PM</option>
-                    <option selected>05:00PM</option>
-                    <option>06:00PM</option>
-                    <option>07:00PM</option>									    
-                    <option>08:00PM</option>									    
-                    <option>09:00PM</option>									    
-                    <option>10:00PM</option>									    
-                    <option>11:00PM</option>									    
-                  </select>									  
-                </div>
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">End time for this absence</legend>
+              <label class="control-label sr-only" for="reduced-end-time-hour">End hour</label>
+              <select class="form-control time-control" id="reduced-end-time-hour" name="reduced-end-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option selected>11</option>									    
+                <option>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="reduced-end-time-minute">End minute</label>
+              <select class="form-control time-control" id="reduced-end-time-minute" name="reduced-end-time-minute">
+                <option>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option selected>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="reduced-end-time-meridiem">End Meridiem</label>
+              <select class="form-control time-control" id="reduced-end-time-meridiem" name="reduced-end-time-meridiem">
+                <option>AM</option>
+                <option selected>PM</option>										    
+              </select>								  
+            </fieldset>
 
             </div>
 
         </div>
 	</div>
-        <!-- ENTER AND CANCEL BUTTONS FOR TIME AWAY -->
+        <!-- ENTER, DELETE AND CANCEL BUTTONS FOR TIME AWAY -->
 
         <div class="row margin-top-20"> 
             <div class="col-xs-4">
@@ -638,7 +989,439 @@
 
 
     <div class="calendar-forms work-schedule-form">
-        WORK SCHEDULE
+		<h3 class="text-primary">Work Schedule</h3>
+        <h4>Week 1 <span id="weekDates"></span></h4>
+        <div class="col-md-9 absence-type-based-form-wrapper work-schedule-form work-schedule-01">
+            <div class="fieldset work-schedule-times-selections">
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Start time</legend>
+              <label class="control-label sr-only" for="work-schedule-start-time-hour">Start hour</label>
+              <select class="form-control time-control" id="work-schedule-start-time-hour" name="work-schedule-start-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option selected>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="work-schedule-start-time-minute">Start minute</label>
+              <select class="form-control time-control" id="work-schedule-start-time-minute" name="work-schedule-start-time-minute">
+                <option selected>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="work-schedule-start-time-meridiem">Start Meridiem</label>
+              <select class="form-control time-control" id="work-schedule-start-time-meridiem" name="work-schedule-start-time-meridiem">
+                <option selected>AM</option>
+                <option>PM</option>										    
+              </select>								  
+            </fieldset>
+
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">End time</legend>
+              <label class="control-label sr-only" for="work-schedule-end-time-hour">End hour</label>
+              <select class="form-control time-control" id="work-schedule-end-time-hour" name="work-schedule-end-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option selected>11</option>									    
+                <option>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="work-schedule-end-time-minute">End minute</label>
+              <select class="form-control time-control" id="work-schedule-end-time-minute" name="work-schedule-end-time-minute">
+                <option>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option selected>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="work-schedule-end-time-meridiem">End Meridiem</label>
+              <select class="form-control time-control" id="work-schedule-end-time-meridiem" name="work-schedule-end-time-meridiem">
+                <option>AM</option>
+                <option selected>PM</option>										    
+              </select>								  
+            </fieldset>
+
+            </div>
+            <div class="fieldset work-schedule-times-selections">
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Meal begin</legend>
+              <label class="control-label sr-only" for="meal-begin-start-time-hour">Start hour</label>
+              <select class="form-control time-control" id="meal-begin-start-time-hour" name="meal-begin-start-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option selected>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="meal-begin-start-time-minute">Start minute</label>
+              <select class="form-control time-control" id="meal-begin-start-time-minute" name="meal-begin-start-time-minute">
+                <option selected>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="meal-begin-start-time-meridiem">Start Meridiem</label>
+              <select class="form-control time-control" id="meal-begin-start-time-meridiem" name="meal-begin-start-time-meridiem">
+                <option selected>AM</option>
+                <option>PM</option>										    
+              </select>								  
+            </fieldset>
+
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Meal end</legend>
+              <label class="control-label sr-only" for="meal-begin-end-time-hour">End hour</label>
+              <select class="form-control time-control" id="meal-begin-end-time-hour" name="meal-begin-end-time-hour">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option selected>11</option>									    
+                <option>12</option>											    
+              </select>									  
+              <label class="control-label sr-only" for="meal-begin-end-time-minute">End minute</label>
+              <select class="form-control time-control" id="meal-begin-end-time-minute" name="meal-begin-end-time-minute">
+                <option>00</option>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>									    
+                <option>08</option>
+                <option>09</option>									    
+                <option>10</option>									    
+                <option>11</option>									    
+                <option>12</option>											    
+                <option>13</option>											    
+                <option>14</option>											    
+                <option>15</option>											    
+                <option>16</option>											    
+                <option>17</option>											    
+                <option>18</option>											    
+                <option>19</option>											    
+                <option>20</option>											    
+                <option>21</option>											    
+                <option>22</option>											    
+                <option>23</option>											    
+                <option>24</option>											    
+                <option>25</option>											    
+                <option>26</option>											    
+                <option>27</option>											    
+                <option>28</option>											    
+                <option>29</option>											    
+                <option>30</option>											    
+                <option>31</option>											    
+                <option>32</option>											    
+                <option>33</option>											    
+                <option>34</option>											    
+                <option>35</option>											    
+                <option>36</option>											    
+                <option>37</option>											    
+                <option>38</option>											    
+                <option>39</option>											    
+                <option>40</option>											    
+                <option>41</option>											    
+                <option>42</option>											    
+                <option>43</option>											    
+                <option>44</option>											    
+                <option>45</option>											    
+                <option>46</option>											    
+                <option>47</option>											    
+                <option>48</option>											    
+                <option>49</option>											    
+                <option>50</option>											    
+                <option>51</option>											    
+                <option>52</option>											    
+                <option>53</option>											    
+                <option>54</option>											    
+                <option>55</option>											    
+                <option>56</option>											    
+                <option>57</option>											    
+                <option>58</option>											    
+                <option selected>59</option>											    
+              </select>	
+              <label class="control-label sr-only" for="meal-begin-end-time-meridiem">End Meridiem</label>
+              <select class="form-control time-control" id="meal-begin-end-time-meridiem" name="meal-begin-end-time-meridiem">
+                <option>AM</option>
+                <option selected>PM</option>										    
+              </select>								  
+            </fieldset>
+
+            </div>
+        </div>
+
+        <!-- THIRD work-schedule COLUMN -->
+
+        <div class="col-md-9 absence-type-based-form-wrapper work-schedule-form work-schedule-03">
+            <div class="work-schedule-repeat-options">
+                <legend class="control-label control-label-legend">Repeats</legend>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-sunday"> Sunday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-monday"> Monday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-tuesday"> Tuesday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-wednesday"> Wednesday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-thursday"> Thursday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-friday"> Friday
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label for="check">
+                    <input type="checkbox" id="work-schedule-repeat-saturday"> Saturday
+                  </label>
+                </div>
+            </div>
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Is your work schedule the same every week?</legend>
+              <div class="radio">
+                <label for="work-schedule-same-yes"><input type="radio" name="work-schedule-same-choices" id="work-schedule-same-yes" value="work-schedule-same-yes">Yes</label>
+              </div>
+              <div class="radio">
+                <label for="work-schedule-same-no"><input type="radio" name="work-schedule-same-choices" id="work-schedule-same-no" value="work-schedule-same-no">No</label>
+              </div>
+              
+            </fieldset>
+            <fieldset class="form-group">
+              <legend class="control-label control-label-legend">Do you know the work schedule for next week?</legend>
+              <div class="radio">
+                <label for="work-schedule-next-yes"><input type="radio" name="work-schedule-next-choices" id="work-schedule-next-yes" value="work-schedule-next-yes">Yes</label>
+              </div>
+              <div class="radio">
+                <label for="work-schedule-next-no"><input type="radio" name="work-schedule-next-choices" id="work-schedule-next-no" value="work-schedule-next-no">No</label>
+              </div>
+              
+            </fieldset>
+        </div>
+        <div class="col-xs-12">
+        	<!-- ENTER, DELETE AND CANCEL BUTTONS FOR Work Schedule -->
+            <div class="row margin-top-20"> 
+                <div class="col-xs-4">
+                    <button class="btn btn-default" type="button" id="btnWorkScheduleCancel">Cancel</button>
+                </div>
+                <div class="col-xs-4" align="center">
+                    <button class="btn btn-default hide" type="button" id="btnWorkScheduleDelete">Delete</button>
+                </div>
+                <div class="col-xs-4" align="right">
+                    <button class="btn btn-primary" type="button" id="enterWorkScheduleButton">Enter</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="calendar-forms pto-form">
@@ -648,12 +1431,13 @@
 </div>
 <div class="row hidden-md hidden-lg">
 	<div class="col-xs-12">
-    	<div id="colorLegend1" class="margin-top-20">
+    	<div id="colorLegend2" class="margin-top-20">
             <ul class="colorLegend">
               <li><span class="colorToday"></span> Today</li>
               <li><span class="colorHoliday"></span> Company Holiday</li>
               <li><span class="colorAbsence"></span> Absence Duration</li>
-              <li><span class="colorRelevant"></span> Relevant Work Week</li>
+              <li><span class="colorContinuous"></span> Time Away</li>
+              <!--<li><span class="colorRelevant"></span> Relevant Work Week</li>-->
               <li><span class="colorWork"></span> Work Schedule</li>
             </ul>
         </div>
@@ -785,8 +1569,8 @@ $( document ).ready(function() {
       }).on('changeDate', function (ev) {
 		 if($(this).find("input").attr('id') == "leaveStartDate")
 		 {
-		 	var lastDay = moment(ev.date).add(3, 'days');
-	     	takingSingleDaySelectionIntoForms(moment(ev.date).format("MM/DD/YYYY"), lastDay.format("MM/DD/YYYY"));
+		 	//var lastDay = moment(ev.date).add(3, 'days');
+	     	takingSingleDaySelectionIntoForms(moment(ev.date));
 		 }
          $(this).blur();
          $(this).pruDatePicker('hide');
@@ -794,19 +1578,28 @@ $( document ).ready(function() {
 	 var jsonString = document.getElementById("toFlexJson").innerHTML;
 	 var jsonObject = JSON.parse(jsonString);
 	 console.log(jsonObject);
-	 document.getElementById("step1Head").innerHTML = jsonObject.questions[0].description;
-	 document.getElementById("step1Text").innerHTML = jsonObject.questions[0].text;
-	 document.getElementById("step2Head").innerHTML = jsonObject.questions[1].description;
-	 document.getElementById("step2Text").innerHTML = jsonObject.questions[1].text;
-	 document.getElementById("step3Head").innerHTML = jsonObject.questions[2].description;
-	 document.getElementById("step3Text").innerHTML = jsonObject.questions[2].text;
+	 if(jsonObject.questions[0]){
+	 	document.getElementById("step1Head").innerHTML = jsonObject.questions[0].description;
+		document.getElementById("step1Text").innerHTML = jsonObject.questions[0].text;
+	 }
+	 if(jsonObject.questions[1]){
+		 document.getElementById("step2Head").innerHTML = jsonObject.questions[1].description;
+		 document.getElementById("step2Text").innerHTML = jsonObject.questions[1].text;
+	 }
+	 if(jsonObject.questions[2]){
+	 	document.getElementById("step3Head").innerHTML = jsonObject.questions[2].description;
+	 	document.getElementById("step3Text").innerHTML = jsonObject.questions[2].text;
+	 }
+	 var lastWorkDay = "Last Work Day";
+	 var firstAbsence = "First Absence";
+	 var returnToWork = "Return to Work";
 	 $('#calendar').fullCalendar({
 	    selectable: true,
 		displayEventTime : false,
 	    header: {
-	      left: 'prev,next today',
+	      left: 'prev,next',
 	      center: 'title',
-	      right: 'month,agendaWeek,agendaDay'
+	      right: 'today'//'month,agendaWeek,agendaDay'
 	    },
 	    dayClick: function(date) {
 	    	// For Continuous absence, the absence needs to be at least 4 days long
@@ -814,9 +1607,7 @@ $( document ).ready(function() {
 	    	// Because we count the first day, this number here is three
 
 	    	// Here I enter the function that's down in the Javascript at the bottom of the page
-
-	      	var lastDay = moment(date).add(3, 'days');
-	      	takingSingleDaySelectionIntoForms(date.format("MM/DD/YYYY"), lastDay.format("MM/DD/YYYY"));
+	      	takingSingleDaySelectionIntoForms(date);
 	    },
 	    select: function(startDate, endDate) {
 	      // We can have things happen here when dates are selected
@@ -838,6 +1629,8 @@ $( document ).ready(function() {
 
 			var startEventClicked = moment(calEvent.start).format('MM/DD/YYYY hh:mmA');
 			var endEventClicked = moment(calEvent.end).format('MM/DD/YYYY hh:mmA');
+			if(calEvent.title == lastWorkDay || calEvent.title == firstAbsence || calEvent.title == returnToWork)
+				return;
 		    alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
 
 
@@ -862,19 +1655,19 @@ $( document ).ready(function() {
 
 				    // These are placeholders.
 					{
-						title: 'Last Work Day',
+						title: lastWorkDay,
 						start: moment(jsonObject.lastWorkDate, 'MMM DD, YYYY'),
 						textColor: "#333",
 						color: "#fff"
 					},
 					{
-						title: 'First Absence',
+						title: firstAbsence,
 						start: moment(jsonObject.absenceStartDate, 'MMM DD, YYYY'),
 						textColor: "#333",
 						color: "#fff"
 					},
 					{
-						title: 'Return to Work',
+						title: returnToWork,
 						start: moment(jsonObject.returnToWorkDate, 'MMM DD, YYYY'),
 						textColor: "#333",
 						color: "#fff"
@@ -899,12 +1692,27 @@ $( document ).ready(function() {
 
 			    // More events here
 
-			  ]
+			  ],
+			dayRender: function (date, cell) {
+				var today = new Date().toDateString();
+                var ddate = date.toDate().toDateString();
+				var startDate = moment(jsonObject.absenceStartDate, 'MMM DD, YYYY');
+				var endDate = moment(jsonObject.returnToWorkDate, 'MMM DD, YYYY').subtract(1, 'days');
+				//if (date.date() === today.getDate()) {
+				if(date > startDate && date <= endDate) {
+					cell.css("background-color", "#F9F8FC");
+				}
+				if (ddate == today) {
+					cell.css("background-color", "#e3f2f4");
+				}
+    		}
 	  });
 	 
 });
 function showInstructionStep(step)
 {
+	if($("#title"+step+"Instructions").find("i").hasClass("fa-chevron-down"))
+		return;
 	$(".titleInstructions").find("i").removeClass("fa-chevron-down").addClass("fa-chevron-right");
 	$(".contentInstructions").slideUp();
 	$("#content"+step+"Instructions").slideDown();
@@ -918,8 +1726,12 @@ window.onload = function() {
 
 // WHEN THE BODY PART OF THE CALENDAR IS CLICKED
 
-function takingSingleDaySelectionIntoForms(startDate, endDate) {
- 
+function takingSingleDaySelectionIntoForms(tempDate) {
+	var startDate = tempDate.format("MM/DD/YYYY");
+	var lastDay = moment(tempDate).add(3, 'days');
+	var endDate = lastDay.format("MM/DD/YYYY");
+ 	var weekFirstDate = tempDate.startOf('week');
+	var weekLastDate = moment(weekFirstDate).add(6, 'days')
 	var step01active = $("#title1Instructions").find("i").hasClass("fa-chevron-down");
 	var step02active = $("#title2Instructions").find("i").hasClass("fa-chevron-down");
 	var step03active = $("#title3Instructions").find("i").hasClass("fa-chevron-down");
@@ -936,11 +1748,13 @@ function takingSingleDaySelectionIntoForms(startDate, endDate) {
 		if($("#date-picker-intermittent-last-day").val() == "")
 			$("#date-picker-intermittent-last-day").val(startDate);
 		$("#date-picker-reduced-first-day").val(startDate);
-
+		if($("#date-picker-reduced-last-day").val() == "")
+			$("#date-picker-reduced-last-day").val(startDate);
 	 } else if (step02active == true) {
 		$(".calendar-forms").hide();
 		$("#calendar").hide();
 		$(".work-schedule-form").show();
+		document.getElementById("weekDates").innerHTML = "(" + weekFirstDate.format("MM/DD/YYYY") + " - " + weekLastDate.format("MM/DD/YYYY") + ")";
 	} else {
 		$(".calendar-forms").hide();
 		$("#calendar").hide();
@@ -1011,8 +1825,8 @@ $("#enterAbsenceButton").click(function() {
 
 		// Start and end times
 
-		 var startTimeUnformatted = $("#continuous-start-time option:selected").text();
-		 var endTimeUnformatted = $("#continuous-end-time option:selected").text();
+		 var startTimeUnformatted = $("#continuous-start-time-hour option:selected").text() + ":" + $("#continuous-start-time-minute option:selected").text() + $("#continuous-start-time-meridiem option:selected").text();
+		 var endTimeUnformatted = $("#continuous-end-time-hour option:selected").text() + ":" + $("#continuous-end-time-minute option:selected").text() + $("#continuous-end-time-meridiem option:selected").text();
 
 		 startConcatenated = firstDateUnformatted + " " + startTimeUnformatted;
 		 endConcatenated = endDateUnformatted + " " + endTimeUnformatted;
