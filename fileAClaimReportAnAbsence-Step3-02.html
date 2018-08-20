@@ -725,37 +725,37 @@
                 <legend class="control-label control-label-legend">Repeats</legend>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-sunday"> Sunday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-sunday"> Sunday
                   </label>
                 </div>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-monday"> Monday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-monday"> Monday
                   </label>
                 </div>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-tuesday"> Tuesday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-tuesday"> Tuesday
                   </label>
                 </div>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-wednesday"> Wednesday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-wednesday"> Wednesday
                   </label>
                 </div>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-thursday"> Thursday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-thursday"> Thursday
                   </label>
                 </div>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-friday"> Friday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-friday"> Friday
                   </label>
                 </div>
                 <div class="checkbox">
                   <label for="check">
-                    <input type="checkbox" id="intermittent-repeat-saturday"> Saturday
+                    <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-saturday"> Saturday
                   </label>
                 </div>
 
@@ -1530,6 +1530,8 @@
 <script src="web/scripts/eeportal.js" language="javascript" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 document.title = "File a Claim / Report an Absence : Workplace Benefits - Prudential Financial";
+var continousAbsenceList = [],
+	IntermittentAbsenceList = [];
 $( document ).ready(function() {
 	//$('#agreementModal').modal({backdrop: 'static', keyboard: false});
 	//$('#agreementModal').modal('show');
@@ -1607,6 +1609,8 @@ $( document ).ready(function() {
 	    	// Because we count the first day, this number here is three
 
 	    	// Here I enter the function that's down in the Javascript at the bottom of the page
+			$( "#time-away-continuous" ).prop( "checked", true );
+			$("input[name='type-of-time-away']").trigger('change');
 	      	takingSingleDaySelectionIntoForms(date);
 	    },
 	    select: function(startDate, endDate) {
@@ -1626,14 +1630,36 @@ $( document ).ready(function() {
 			// Here on an even click, I'm just alerting the info for the event.
 
 			// We should probably have logic to re-enter the form information
-
+			var startDate = calEvent.start;
 			var startEventClicked = moment(calEvent.start).format('MM/DD/YYYY hh:mmA');
 			var endEventClicked = moment(calEvent.end).format('MM/DD/YYYY hh:mmA');
 			if(calEvent.title == lastWorkDay || calEvent.title == firstAbsence || calEvent.title == returnToWork)
 				return;
-		    alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
+			if(calEvent.title == "Continuous Time Away"){
+				var r=confirm("Delete " + calEvent.title);
+				if (r===true)
+				{
+					$('#calendar').fullCalendar('removeEvents', calEvent._id);
+					continousAbsenceList = continousAbsenceList.filter(function(item){
+						return moment(item.start).format('MM/DD/YYYY') != moment(startDate).format('MM/DD/YYYY');
+					});
+					return;
+				}
+			}else if(calEvent.title == "Intermittent Time Away"){
+				var r=confirm("Delete " + calEvent.title);
+				if (r===true){
+					$('#calendar').fullCalendar('removeEvents', calEvent._id);
+					IntermittentAbsenceList = IntermittentAbsenceList.filter(function(item){
+						return moment(item.start).format('MM/DD/YYYY') != moment(startDate).format('MM/DD/YYYY');
+					})
+				}
+			}
+			
+		    //alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
+			//takingSingleDaySelectionIntoForms(calEvent.start, calEvent.end);
+			//$('#btnAbsenceDelete').addClass('show');
 
-
+			//$("#calendar").fullCalendar('removeEvents',eventId);
 		    // These commented lines I've left over from the documentation...
 
 		    // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -1645,54 +1671,7 @@ $( document ).ready(function() {
 		 },
 		//aspectRatio: 1,
 		height: "auto",
-		events: [
-				    
-				    // This is where we'll need to fetch existing absences from our database.
-
-				    // There can be different sources (JSON, an array, functions)
-
-				    // See here for documentation -- https://fullcalendar.io/docs/eventSources
-
-				    // These are placeholders.
-					{
-						title: lastWorkDay,
-						start: moment(jsonObject.lastWorkDate, 'MMM DD, YYYY'),
-						textColor: "#333",
-						color: "#fff"
-					},
-					{
-						title: firstAbsence,
-						start: moment(jsonObject.absenceStartDate, 'MMM DD, YYYY'),
-						textColor: "#333",
-						color: "#fff"
-					},
-					{
-						title: returnToWork,
-						start: moment(jsonObject.returnToWorkDate, 'MMM DD, YYYY'),
-						textColor: "#333",
-						color: "#fff"
-					}/*,
-				    {
-				      title: 'Intermittent Time Away',
-				      start: moment('08/03/2018 12:00AM', 'MM/DD/YYYY hh:mmA'),
-				      end: moment('08/03/2018 11:59PM', 'MM/DD/YYYY hh:mmA'),
-				      // description: 'This is a cool event',
-				      backgroundColor: "#07639D"
-
-				    },
-
-				    {
-				      	title: 'Continuous Time Away',
-				      	start: moment('08/20/2018 09:00AM', 'MM/DD/YYYY hh:mmA'),
-						end: moment('08/24/2018 05:00PM', 'MM/DD/YYYY hh:mmA'),
-				     	// description: 'This is another cool event',
-				      	backgroundColor: "#07639D"
-				    }*/
-
-
-			    // More events here
-
-			  ],
+		events: continousAbsenceList,
 			dayRender: function (date, cell) {
 				var today = new Date().toDateString();
                 var ddate = date.toDate().toDateString();
@@ -1709,6 +1688,7 @@ $( document ).ready(function() {
 	  });
 	 
 });
+
 function showInstructionStep(step)
 {
 	if($("#title"+step+"Instructions").find("i").hasClass("fa-chevron-down"))
@@ -1726,10 +1706,14 @@ window.onload = function() {
 
 // WHEN THE BODY PART OF THE CALENDAR IS CLICKED
 
-function takingSingleDaySelectionIntoForms(tempDate) {
+function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 	var startDate = tempDate.format("MM/DD/YYYY");
-	var lastDay = moment(tempDate).add(3, 'days');
-	var endDate = lastDay.format("MM/DD/YYYY");
+	var endDate;
+	if(tempEndDate != undefined)
+		endDate = tempEndDate.format("MM/DD/YYYY");
+	else
+		endDate = moment(tempDate).add(3, 'days').format("MM/DD/YYYY");
+		
  	var weekFirstDate = tempDate.startOf('week');
 	var weekLastDate = moment(weekFirstDate).add(6, 'days')
 	var step01active = $("#title1Instructions").find("i").hasClass("fa-chevron-down");
@@ -1742,7 +1726,7 @@ function takingSingleDaySelectionIntoForms(tempDate) {
 		$(".leave-dates-form").show();
 		
 		$("#date-picker-continous-first-day").val(startDate);
-		if($("#date-picker-continous-last-day").val() == "")
+		//if($("#date-picker-continous-last-day").val() == "")
 			$("#date-picker-continous-last-day").val(endDate);
 		$("#date-picker-intermittent-first-day").val(startDate);
 		if($("#date-picker-intermittent-last-day").val() == "")
@@ -1777,6 +1761,8 @@ $("input[name='type-of-time-away']").on("change", function(){
 	if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-continuous"){
 	   $(".continuous-form").show();
 	} else if ($('input:radio[name=type-of-time-away]:checked').val() == "time-away-intermittent") {
+		$('#intermittent-all-day-checkbox').prop('checked', false);
+		$("#intermittent-all-day-checkbox").trigger("change");
 		$(".intermittent-form").removeClass("hidden").show();
 	} else {
 		$(".reduced-form").show();
@@ -1806,7 +1792,44 @@ $("input[name='intermittent-repeat-choices']").on("change", function(){
 	}
 });
 
+$('#btnAbsenceDelete').on('click',function(){
+	var firstDateUnformatted = $("#date-picker-continous-first-day").val(),
+		endDateUnformatted = $("#date-picker-continous-last-day").val();
+		
+	/*while(new Date(firstDateUnformatted) <= new Date(endDateUnformatted)){
+		continousAbsenceList = continousAbsenceList.filter(function(value){
+			return value != firstDateUnformatted;
+		});
+		firstDateUnformatted = moment(firstDateUnformatted).add(1,'days').format('MM/DD/YYYY');
+	}*/
+	$(".calendar-forms").hide();
+	console.log(eventId);
+	//$("#calendar").fullCalendar('removeEvents',eventId);
+	$("#calendar").show();
+	
+});
+
 // WHEN ENTER BUTTON IS CLICKED IN ABSENCE FORMS
+
+function checkExistingevents(existingEvents,firstDateUnformatted,endDateUnformatted){
+	var sDate = firstDateUnformatted;
+	for(var i=0;i<existingEvents.length;i++){
+		var startDate = moment(existingEvents[i].start).format('MM/DD/YYYY'),
+			endDate = moment(existingEvents[i].end).format('MM/DD/YYYY');
+		while(new Date(startDate) <= new Date(endDate)){
+			firstDateUnformatted = sDate
+			while(new Date(firstDateUnformatted) <= new Date(endDateUnformatted)){
+				if(startDate == moment(firstDateUnformatted).format('MM/DD/YYYY')){
+					alert('Event already there...');
+					return false;
+				}
+				firstDateUnformatted = moment(firstDateUnformatted).add(1,'days').format('MM/DD/YYYY');
+			}
+			startDate = moment(startDate).add(1,'days').format('MM/DD/YYYY');
+		}
+	}
+	return true;
+}
 
 $("#enterAbsenceButton").click(function() {
 	
@@ -1816,6 +1839,23 @@ $("#enterAbsenceButton").click(function() {
 		// For Continuous absence, the absence needs to be at least 4 days long
 		var firstDateUnformatted = $("#date-picker-continous-first-day").val();
 		var endDateUnformatted = $("#date-picker-continous-last-day").val();
+		
+		if(firstDateUnformatted.trim() == ''){
+			alert('Error:Please provide first day of absence');
+			return;
+		}else if(endDateUnformatted.trim() == ''){
+			alert('Error:Please provide valid date');
+			return;
+		}
+		
+		if(!checkExistingevents(continousAbsenceList,firstDateUnformatted,endDateUnformatted))
+			return false;
+		
+		if(!checkExistingevents(IntermittentAbsenceList,firstDateUnformatted,endDateUnformatted))
+			return false;
+		
+		//firstDateUnformatted = $("#date-picker-continous-first-day").val();
+		
 		var firstDayForCalc = moment(firstDateUnformatted, 'MM/DD/YYYY');
 		var lastDayForCalc = moment(endDateUnformatted, 'MM/DD/YYYY');
 		
@@ -1838,6 +1878,20 @@ $("#enterAbsenceButton").click(function() {
 			return
 		} else {
 			// If we pass the four day test, we render event. Note here the method is renderEvent with no 's' at the end
+			/*while(new Date(lastDayForCalc) >= new Date(firstDayForCalc)){
+				continousAbsenceList.push(moment(firstDayForCalc).format('MM/DD/YYYY'));
+				firstDayForCalc = moment(firstDayForCalc).add(1,'days');
+			}*/
+			continousAbsenceList.push(
+				{
+				  title: 'Continuous Time Away',
+				  start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
+				  end: moment(endConcatenated, 'MM/DD/YYYY hh:mmA'),
+				  description: 'Continuous Time Away',
+				  backgroundColor: "#07639D"
+				}
+			);
+			
 			$("#calendar").show().fullCalendar('renderEvent',
 				{
 				  title: 'Continuous Time Away',
@@ -1859,6 +1913,34 @@ $("#enterAbsenceButton").click(function() {
 
 		var firstDateUnformatted = $("#date-picker-intermittent-first-day").val();
 		var endDateUnformatted = $("#date-picker-intermittent-last-day").val();
+		
+		if(firstDateUnformatted.trim() == ""){
+			alert("Please provide First day of absence");
+			return false;
+		}else if(endDateUnformatted.trim() == ""){
+			alert("Please provide Last day of absence before return");
+			return false;
+		}
+		
+		if(moment(endDateUnformatted).diff(moment(firstDateUnformatted),'days') < 0){
+			alert('End date should not be lesser compared to start date');
+			return false;
+		}
+		
+		var sDate = moment(firstDateUnformatted+" "+$("#intermittent-start-time-hour option:selected").text() + ":" + $("#intermittent-start-time-minute option:selected").text() +" "+ $("#intermittent-start-time-meridiem option:selected").text()),
+			eDate = moment(endDateUnformatted+" "+$("#intermittent-end-time-hour option:selected").text() + ":" + $("#intermittent-end-time-minute option:selected").text() +" "+ $("#intermittent-end-time-meridiem option:selected").text());
+		
+		if(eDate.diff(sDate,'minutes') >= 1439 && $('#intermittent-all-day-checkbox'). prop("checked") == false){
+			alert('Please select all day...');
+			return false;
+		}
+		
+		if(!checkExistingevents(continousAbsenceList,firstDateUnformatted,endDateUnformatted))
+			return false;
+		
+		if(!checkExistingevents(IntermittentAbsenceList,firstDateUnformatted,endDateUnformatted))
+			return false;
+		
 		var firstDayForCalc = moment(firstDateUnformatted, 'MM/DD/YYYY');
 		var lastDayForCalc = moment(endDateUnformatted, 'MM/DD/YYYY');
 
@@ -1867,33 +1949,20 @@ $("#enterAbsenceButton").click(function() {
 		 var newIntermittentAbsences = [];
 
 		 // Now we'll loop through days between beginning and end
-
-		 while(lastDayForCalc >= firstDayForCalc) {
-
-
+		while(lastDayForCalc >= firstDayForCalc) {
 			var firstDayForCalFormatted = moment(firstDayForCalc).format("MM/DD/YYYY");
-
 			var startTimeUnformatted = $("#intermittent-start-time option:selected").text();
 			var endTimeUnformatted = $("#intermittent-end-time option:selected").text();
-
-
 			// Because we're looping through this day by day, the start and end dates should be the same
-
 			startConcatenated = firstDayForCalFormatted + " " + startTimeUnformatted;
 			endConcatenated = firstDayForCalFormatted + " " + endTimeUnformatted;
-
 			// There should be logic to make sure the start and end times aren't the same.
-
 			// This should porbably be handled in the form, but I wrote logic here to add one hour.
-
 			if (startConcatenated == endConcatenated) {
 				var fixedProblemEndTime = moment(endTimeUnformatted, "hh:mmA").add(1, 'hour'); 		
 				endConcatenated = firstDayForCalFormatted + " " + moment(fixedProblemEndTime).format("hh:mmA");
 			}
-
-
 			// Here we push the object into the array
-
 			newIntermittentAbsences.push( {
 				title: 'Intermittent Time Away',
 				start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
@@ -1901,16 +1970,27 @@ $("#enterAbsenceButton").click(function() {
 				description: 'Another intermittent absence',
 				backgroundColor: '#07639D'
 
-			 } );
-
+			} );
+			IntermittentAbsenceList.push({
+				title: 'Intermittent Time Away',
+				start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
+				end: moment(endConcatenated, 'MM/DD/YYYY hh:mmA'),
+				description: 'Another intermittent absence',
+				backgroundColor: '#07639D'
+			})
 			// Now we go to the next day by adding a day
+			if($('input:radio[name=intermittent-repeat-choices]:checked').val() == undefined){
+				firstDayForCalc = firstDayForCalc.add(7, 'day');
+			}else if($('input:radio[name=intermittent-repeat-choices]:checked').val() == "intermittent-repeat-no"){
+				break;
+			}else{
+				
+			}
+		}
 
-			firstDayForCalc = firstDayForCalc.add(1, 'day'); 
-		 }
+		// Once we complete the loop, we render the array of events onto the calendar.
 
-		 // Once we complete the loop, we render the array of events onto the calendar.
-
-		 // Note this method is renderEvents WITH AN 's' at the end
+		// Note this method is renderEvents WITH AN 's' at the end
 
 		$("#calendar").show().fullCalendar('renderEvents', newIntermittentAbsences,
 			true);
