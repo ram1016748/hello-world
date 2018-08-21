@@ -1531,7 +1531,9 @@
 <script language="javascript" type="text/javascript">
 document.title = "File a Claim / Report an Absence : Workplace Benefits - Prudential Financial";
 var continousAbsenceList = [],
-	IntermittentAbsenceList = [];
+	IntermittentAbsenceList = [],
+	eventId,
+	eventTitle;
 $( document ).ready(function() {
 	//$('#agreementModal').modal({backdrop: 'static', keyboard: false});
 	//$('#agreementModal').modal('show');
@@ -1574,6 +1576,7 @@ $( document ).ready(function() {
 		 	//var lastDay = moment(ev.date).add(3, 'days');
 	     	takingSingleDaySelectionIntoForms(moment(ev.date));
 		 }
+		 $('#btnAbsenceDelete').removeClass('show');
          $(this).blur();
          $(this).pruDatePicker('hide');
      });
@@ -1635,29 +1638,20 @@ $( document ).ready(function() {
 			var endEventClicked = moment(calEvent.end).format('MM/DD/YYYY hh:mmA');
 			if(calEvent.title == lastWorkDay || calEvent.title == firstAbsence || calEvent.title == returnToWork)
 				return;
-			if(calEvent.title == "Continuous Time Away"){
-				var r=confirm("Delete " + calEvent.title);
-				if (r===true)
-				{
-					$('#calendar').fullCalendar('removeEvents', calEvent._id);
-					continousAbsenceList = continousAbsenceList.filter(function(item){
-						return moment(item.start).format('MM/DD/YYYY') != moment(startDate).format('MM/DD/YYYY');
-					});
-					return;
-				}
-			}else if(calEvent.title == "Intermittent Time Away"){
-				var r=confirm("Delete " + calEvent.title);
-				if (r===true){
-					$('#calendar').fullCalendar('removeEvents', calEvent._id);
-					IntermittentAbsenceList = IntermittentAbsenceList.filter(function(item){
-						return moment(item.start).format('MM/DD/YYYY') != moment(startDate).format('MM/DD/YYYY');
-					})
-				}
-			}
 			
-		    //alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
-			//takingSingleDaySelectionIntoForms(calEvent.start, calEvent.end);
-			//$('#btnAbsenceDelete').addClass('show');
+			eventId = calEvent._id;
+			eventTitle = calEvent.title;
+		    alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
+			takingSingleDaySelectionIntoForms(calEvent.start, calEvent.end);
+			$('#btnAbsenceDelete').addClass('show');
+			
+			if(calEvent.title == "Continuous Time Away"){
+				$( "#time-away-continuous" ).prop( "checked", true );
+				$("input[name='type-of-time-away']").trigger('change');
+			}else if(calEvent.title == "time-away-intermittent"){
+				$("time-away-intermittent").prop( "checked", true );
+				$("input[name='type-of-time-away']").trigger('change');
+			}
 
 			//$("#calendar").fullCalendar('removeEvents',eventId);
 		    // These commented lines I've left over from the documentation...
@@ -1709,6 +1703,7 @@ window.onload = function() {
 function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 	var startDate = tempDate.format("MM/DD/YYYY");
 	var endDate;
+	
 	if(tempEndDate != undefined)
 		endDate = tempEndDate.format("MM/DD/YYYY");
 	else
@@ -1729,7 +1724,7 @@ function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 		//if($("#date-picker-continous-last-day").val() == "")
 			$("#date-picker-continous-last-day").val(endDate);
 		$("#date-picker-intermittent-first-day").val(startDate);
-		if($("#date-picker-intermittent-last-day").val() == "")
+		//if($("#date-picker-intermittent-last-day").val() == "")
 			$("#date-picker-intermittent-last-day").val(startDate);
 		$("#date-picker-reduced-first-day").val(startDate);
 		if($("#date-picker-reduced-last-day").val() == "")
@@ -1795,16 +1790,18 @@ $("input[name='intermittent-repeat-choices']").on("change", function(){
 $('#btnAbsenceDelete').on('click',function(){
 	var firstDateUnformatted = $("#date-picker-continous-first-day").val(),
 		endDateUnformatted = $("#date-picker-continous-last-day").val();
-		
-	/*while(new Date(firstDateUnformatted) <= new Date(endDateUnformatted)){
-		continousAbsenceList = continousAbsenceList.filter(function(value){
-			return value != firstDateUnformatted;
-		});
-		firstDateUnformatted = moment(firstDateUnformatted).add(1,'days').format('MM/DD/YYYY');
-	}*/
+	
 	$(".calendar-forms").hide();
-	console.log(eventId);
-	//$("#calendar").fullCalendar('removeEvents',eventId);
+	$("#calendar").fullCalendar('removeEvents',eventId);
+	if(eventTitle == "Continuous Time Away"){
+		continousAbsenceList = continousAbsenceList.filter(function(item){
+			return moment(item.start).format('MM/DD/YYYY') != moment(firstDateUnformatted).format('MM/DD/YYYY');
+		});
+	}else if(eventTitle == "Intermittent Time Away"){
+		IntermittentAbsenceList = IntermittentAbsenceList.filter(function(item){
+			return moment(item.start).format('MM/DD/YYYY') != moment(firstDateUnformatted).format('MM/DD/YYYY');
+		});
+	}
 	$("#calendar").show();
 	
 });
@@ -1958,10 +1955,10 @@ $("#enterAbsenceButton").click(function() {
 			endConcatenated = firstDayForCalFormatted + " " + endTimeUnformatted;
 			// There should be logic to make sure the start and end times aren't the same.
 			// This should porbably be handled in the form, but I wrote logic here to add one hour.
-			if (startConcatenated == endConcatenated) {
+			/*if (startConcatenated == endConcatenated) {
 				var fixedProblemEndTime = moment(endTimeUnformatted, "hh:mmA").add(1, 'hour'); 		
 				endConcatenated = firstDayForCalFormatted + " " + moment(fixedProblemEndTime).format("hh:mmA");
-			}
+			}*/
 			// Here we push the object into the array
 			newIntermittentAbsences.push( {
 				title: 'Intermittent Time Away',
