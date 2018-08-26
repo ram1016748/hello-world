@@ -6,23 +6,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="web/css/playbook.min.css" rel="stylesheet">
+<link rel="stylesheet" href="web/css/eeportal.css" />
 <link href="web/css/bootstrap-datepicker.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="web/css/fullcalendar.min.css">
 <link rel="stylesheet" type="text/css" href="web/css/fullcalendar.print.css" media='print'>
-<link rel="stylesheet" href="web/css/eeportal.css" />
 <style type="text/css">
+/* Below styles should not be copied to CSS and is meant for only this page. */
 #btnSaveAndContinue {
 	float:right;
 }
-.time-control{
-	display:inline-block;
-	max-width:70px;
+.pru-datepicker .input-group {
+	max-width:237px;
 }
-.pru-datepicker .input-group{
-	max-width:216px;
+.popover.top{
+	margin-top:-10px;
 }
-.fc-day-grid-event{
-	padding-left: 5px;
+.fc-unthemed td.fc-today {
+	background-color: #E3F2F4 !important;
 }
 </style>
 <!--[if lt IE 9]>
@@ -154,577 +154,577 @@
   </nav>
 </header>
 <main id="main-content" class="content" role="main">
-<div class="container">
-<div class="row">
-<div class="col-xs-12">
-<h1 id="pageTitle">File a Claim / Report an Absence</h1>
-<div align="center" class="fileAClaimStepIndicator">
-  <ol id="fileAClaimStepIndicator" class="list-unstyled text-center step-indicator step-indicator-horizontal">
-    <li class="success">
-      <div id="txtStep1" class="step"><span class="fa fa-check"></span></div>
-      <div id="txtCaption1" class="caption hidden-xs">Demographic info</div>
-    </li>
-    <li class="success">
-      <div id="txtStep2" class="step"><span class="fa fa-check"></span></div>
-      <div id="txtCaption2" class="caption hidden-xs">Reason</div>
-    </li>
-    <li class="active info">
-      <div id="txtStep3" class="step">3</div>
-      <div id="txtCaption3" class="caption">Time Away</div>
-    </li>
-    <li class="inactive">
-      <div id="txtStep4" class="step">4</div>
-      <div id="txtCaption4" class="caption hidden-xs">Payment</div>
-    </li>
-    <li class="inactive">
-      <div id="txtStep5" class="step">5</div>
-      <div id="txtCaption5" class="caption hidden-xs">Finish</div>
-    </li>
-  </ol>
-</div>
-<div id="stepTimeAway" class="margin-top-30 margin-bottom-50">
-<div class="h3">Step 3: Provide details about your time away from work</div>
-<div class="row margin-top-30">
-<div class="col-md-3">
-  <div class="h4">Instructions</div>
-  <div id="step1Instructions" class="margin-bottom-20 stepInstructions">
-    <div id="title1Instructions" class="titleInstructions" onclick="JavaScript:showInstructionStep(1);"><i class="fa fa-chevron-down" aria-hidden="false"></i>Step 1 - <span id="step1Head">Leaves Details</span></div>
-    <div id="content1Instructions" class="margin-left-30 margin-top-10 contentInstructions">
-      <p id="step1Text">Please provide the dates and times that you will be away from work:</p>
-      <div class="js-example1">
-        <div class="pru-datepicker">
-          <div class="form-group">
-            <label class="control-label sr-only" for="leaveStartDate">Leave Dates <span class="sr-only">MM/DD/YYYY</span></label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="leaveStartDate" name="leaveStartDate" placeholder="MM/DD/YYYY" aria-describedby="err-leaveStartDate" aria-invalid="false">
-              <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
-            <div id="err-leaveStartDate" class="help-block hidden"></div>
-          </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 id="pageTitle">File a Claim / Report an Absence</h1>
+        <div align="center" class="fileAClaimStepIndicator">
+          <ol id="fileAClaimStepIndicator" class="list-unstyled text-center step-indicator step-indicator-horizontal">
+            <li class="success">
+              <div id="txtStep1" class="step"><span class="fa fa-check"></span></div>
+              <div id="txtCaption1" class="caption hidden-xs">Demographic info</div>
+            </li>
+            <li class="success">
+              <div id="txtStep2" class="step"><span class="fa fa-check"></span></div>
+              <div id="txtCaption2" class="caption hidden-xs">Reason</div>
+            </li>
+            <li class="active info">
+              <div id="txtStep3" class="step">3</div>
+              <div id="txtCaption3" class="caption">Time Away</div>
+            </li>
+            <li class="inactive">
+              <div id="txtStep4" class="step">4</div>
+              <div id="txtCaption4" class="caption hidden-xs">Payment</div>
+            </li>
+            <li class="inactive">
+              <div id="txtStep5" class="step">5</div>
+              <div id="txtCaption5" class="caption hidden-xs">Finish</div>
+            </li>
+          </ol>
         </div>
-      </div>
-      <div class="checkbox">
-        <label for="check">
-        <input type="checkbox" id="dKnow25" value="IDon'tKnow">
-        I don't know </label>
-      </div>
-    </div>
-  </div>
-  <div id="step2Instructions" class="margin-bottom-20 stepInstructions">
-    <div id="title2Instructions" class="titleInstructions" onclick="JavaScript:showInstructionStep(2);"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 2 - <span  id="step2Head">Work Schedule</span></div>
-    <div id="content2Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
-      <p id="step2Text">The work schedule provided by your employer is shown on the calendar. Click on bar for details.</p>
-      <fieldset class="form-group">
-      <legend class="control-label control-label-legend sr-only">is work schedule correct?</legend>
-      <div class="radio">
-        <label for="male">
-        <input type="radio" name="gender" id="male">
-        Yes</label>
-      </div>
-      <div class="radio">
-        <label for="female">
-        <input type="radio" name="gender" id="female">
-        No</label>
-      </div>
-      </fieldset>
-    </div>
-  </div>
-  <div id="step3Instructions" class="margin-bottom-20 stepInstructions hide">
-    <div id="title3Instructions" class="titleInstructions" onclick="JavaScript:showInstructionStep(3);"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 3 - <span id="step3Head">PTO Dates</span></div>
-    <div id="content3Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
-      <p id="step3Text">The work schedule provided by your employer is shown on the calendar. Click on bar for details.</p>
-      <fieldset class="form-group">
-      <legend class="control-label control-label-legend sr-only">is work schedule correct?</legend>
-      <div class="radio">
-        <label for="male">
-        <input type="radio" name="gender" id="male">
-        Yes</label>
-      </div>
-      <div class="radio">
-        <label for="female">
-        <input type="radio" name="gender" id="female">
-        No</label>
-      </div>
-      </fieldset>
-    </div>
-  </div>
-  <hr>
-  <div id="colorLegend1" class="margin-bottom-20 hidden-xs hidden-sm">
-    <ul class="colorLegend">
-      <li><span class="colorToday"></span> Today</li>
-      <li><span class="colorHoliday"></span> Company Holiday</li>
-      <li><span class="colorAbsence"></span> Absence Duration</li>
-      <li><span class="colorContinuous"></span> Time Away</li>
-      <li><span class="colorWork"></span> Work Schedule</li>
-    </ul>
-  </div>
-</div>
-<div class="col-md-9">
-<div class="calendar-container mt-3 row">
-
-    <div id="calendar" class="col-xs-12"></div>
-
-    <!-- TIME AWAY FORMS -->
-
-    <div class="calendar-forms leave-dates-form col-xs-12">
-       <div class="row"> 
-        <h3 class="text-primary">Time Away from Work</h3>
-
-        <!-- SELECTING TIME AWAY TYPE -->
-
-        <div class="col-md-12">
-            <fieldset class="form-group time-away-type-wrapper">
-              <legend class="control-label control-label-legend">Type</legend>
-              <div class="radio">
-                <label for="time-away-continuous"><input type="radio" name="type-of-time-away" id="time-away-continuous" value="time-away-continuous" checked>Continuous (at least four consecutive days)</label>
-              </div>
-              <div class="radio">
-                <label for="time-away-intermittent"><input type="radio" name="type-of-time-away" id="time-away-intermittent" value="time-away-intermittent">Intermittent</label>
-              </div>
-              <div class="radio">
-                <label for="time-away-reduced-hours"><input type="radio" name="type-of-time-away" id="time-away-reduced-hours" value="time-away-reduced-hours">Reduced Hours</label>
-              </div>
-            </fieldset>
-
-            
-        </div>
-
-        <!-- CONTINUOUS FORM -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper continuous-form continous-01 js-example1">
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-continous-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-continous-first-day" placeholder="" aria-describedby="date-picker-continous-first-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+        <div id="stepTimeAway" class="margin-top-30 margin-bottom-50">
+          <div class="h3">Provide details about your time away from work</div>
+          <div class="row margin-top-30">
+            <div class="col-md-3">
+              <div class="h4">Instructions</div>
+              <div id="step1Instructions" class="margin-bottom-20 stepInstructions">
+                <div id="title1Instructions" tabindex="0" class="titleInstructions" onClick="JavaScript:showInstructionStep(1);"><i class="fa fa-chevron-down" aria-hidden="false"></i>Step 1 - <span id="step1Head">Leaves Dates</span> <span id="icon1" class="fa fa-arrow-left green-text floatRight hide"></span></div>
+                <div id="content1Instructions" class="margin-left-30 margin-top-10 contentInstructions">
+                  <p id="step1Text">Please provide the dates and times that you will be away from work:</p>
+                  <div class="js-example1">
+                    <div class="pru-datepicker">
+                      <div class="form-group">
+                        <label class="control-label sr-only" for="leaveStartDate">Leave Start Date <span class="sr-only">MM/DD/YYYY</span></label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="leaveStartDate" name="leaveStartDate" placeholder="MM/DD/YYYY" aria-describedby="err-leaveStartDate" aria-invalid="false">
+                          <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                        <div id="err-leaveStartDate" class="help-block hidden"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="checkbox">
+                    <label for="check">
+                    <input type="checkbox" id="dKnow" value="IDon'tKnow" onClick="javascript:addAnotherTimeAway('n');">
+                    I don't know </label>
+                  </div>
                 </div>
-                <div id="err-date-picker-continous-first-day" class="help-block hidden"></div>
-              </div>
-            </div>
-
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-continous-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-continous-last-day" placeholder="" aria-describedby="date-picker-continous-last-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                <div id="content1ConfirmAddAnother" class="margin-left-30 margin-top-10 hide">
+                	<p id="step1Text2">Your leave has been recorded. Would you like to add another?</p>
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend sr-only">Would you like to add another?</legend>
+                      <div class="radio">
+                        <label for="addYes">
+                        <input type="radio" name="addAnother" id="addYes" onClick="javascript:addAnotherTimeAway('y');">
+                        Yes</label>
+                      </div>
+                      <div class="radio">
+                        <label for="addNo">
+                        <input type="radio" name="addAnother" id="addNo" onClick="javascript:addAnotherTimeAway('n');">
+                        No</label>
+                      </div>
+                      </fieldset>
                 </div>
-                <div id="err-date-picker-continous-last-day" class="help-block hidden"></div>
               </div>
-            </div>
-
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Start time for this absence</legend>
-              <label class="control-label sr-only" for="continuous-start-time-hour">Start hour</label>
-              <select class="form-control time-control" id="continuous-start-time-hour" name="continuous-start-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option selected>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="continuous-start-time-minute">Start minute</label>
-              <select class="form-control time-control" id="continuous-start-time-minute" name="continuous-start-time-minute">
-                <option selected>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="continuous-start-time-meridiem">Start Meridiem</label>
-              <select class="form-control time-control" id="continuous-start-time-meridiem" name="continuous-start-time-meridiem">
-                <option selected>AM</option>
-                <option>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">End time for this absence</legend>
-              <label class="control-label sr-only" for="continuous-end-time-hour">End hour</label>
-              <select class="form-control time-control" id="continuous-end-time-hour" name="continuous-end-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option selected>11</option>									    
-                <option>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="continuous-end-time-minute">End minute</label>
-              <select class="form-control time-control" id="continuous-end-time-minute" name="continuous-end-time-minute">
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option selected>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="continuous-end-time-meridiem">End Meridiem</label>
-              <select class="form-control time-control" id="continuous-end-time-meridiem" name="continuous-end-time-meridiem">
-                <option>AM</option>
-                <option selected>PM</option>										    
-              </select>								  
-            </fieldset>
-
-        </div>
-
-        <!-- INTERMITTENT FORM -->
-
-		<!-- FIRST INTERMITTENT COLUMN -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-03 js-example1" style="display:none;">
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-intermittent-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-intermittent-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+              <div id="step2Instructions" class="margin-bottom-20 stepInstructions">
+                <div id="title2Instructions" tabindex="0" class="titleInstructions" onClick="JavaScript:showInstructionStep(2);"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 2 - <span  id="step2Head">Work Schedule</span></div>
+                <div id="content2Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
+                  <p id="step2Text">The work schedule provided by your employer is shown on the calendar. Click on a bar for details.</p>
+                  <fieldset class="form-group">
+                  <legend id="step2LegendText" class="control-label control-label-legend">is work schedule correct?</legend>
+                  <div class="radio">
+                    <label for="workScheduleCorrect">
+                    <input type="radio" name="workSchedule" id="workScheduleCorrect" onClick="javascript:isWorkScheduleCorrect('y');">
+                    Yes</label>
+                  </div>
+                  <div class="radio">
+                    <label for="workScheduleNotCorrect">
+                    <input type="radio" name="workSchedule" id="workScheduleNotCorrect" onClick="javascript:isWorkScheduleCorrect('n');">
+                    No</label>
+                  </div>
+                  </fieldset>
                 </div>
-                <div id="err-date-picker-intermittent-first-day"class="help-block hidden"></div>
-              </div>
-            </div>
-
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-intermittent-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-intermittent-last-day" placeholder="" aria-describedby="date-picker-intermittent-last-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                <div id="editWorkSchedule" class="margin-left-30 margin-top-10 hide">
+                	<div class="js-example1">
+                    <div class="pru-datepicker">
+                      <div class="form-group">
+                        <label class="control-label sr-only" for="workScheduleStartDate">Work Schedule Start Date <span class="sr-only">MM/DD/YYYY</span></label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="workScheduleStartDate" name="workScheduleStartDate" placeholder="MM/DD/YYYY" aria-describedby="err-workScheduleStartDate" aria-invalid="false">
+                          <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                        <div id="err-workScheduleStartDate" class="help-block hidden"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div id="err-date-picker-intermittent-last-day" class="help-block hidden"></div>
+                <div id="content2ConfirmCorrectWorkSchedule" class="margin-left-30 margin-top-10 hide">
+                	<p id="step2Text2">The work schedule you have provided is displayed. Click on a day to make a change.</p>
+                    <div class="checkbox">
+                      <label for="check">
+                        <input type="checkbox" id="correctWorkSchedule" name="correctWorkSchedule"> This is correct
+                      </label>
+                    </div>
+                </div>
+              </div>
+              <div id="step3Instructions" class="margin-bottom-20 stepInstructions hide">
+                <div id="title3Instructions" tabindex="0" class="titleInstructions" onClick="JavaScript:showInstructionStep(3);"><i class="fa fa-chevron-right" aria-hidden="true"></i>Step 3 - <span id="step3Head">PTO Dates</span></div>
+                <div id="content3Instructions" class="margin-left-30 margin-top-10 contentInstructions" style="display:none">
+                </div>
+              </div>
+              <hr>
+              <div id="colorLegend1" class="margin-bottom-20 hidden-xs hidden-sm">
+                <ul class="colorLegend">
+                  <li><span class="colorToday"></span> Today</li>
+                  <li><span class="colorHoliday"></span> Company Holiday</li>
+                  <li><span class="colorAbsence"></span> Absence Duration</li>
+                  <li><span class="colorContinuous"></span> Time Away</li>
+                  <li><span class="colorWork"></span> Work Schedule</li>
+                </ul>
               </div>
             </div>
-
-
-        </div>
-
-        <!-- SECOND INTERMITTENT COLUMN -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-01" style="display:none;">
-            <div class="checkbox intermittent-all-day-checkbox-wrapper">
-              <label for="intermittent-all-day-checkbox">
-                <input type="checkbox" id="intermittent-all-day-checkbox" name="intermittent-all-day-checkbox"> All day
-              </label>
-            </div>
-            <div class="fieldset intermittent-times-selections">
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Start time for this absence</legend>
-              <label class="control-label sr-only" for="intermittent-start-time-hour">Start hour</label>
-              <select class="form-control time-control" id="intermittent-start-time-hour" name="intermittent-start-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option selected>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="intermittent-start-time-minute">Start minute</label>
-              <select class="form-control time-control" id="intermittent-start-time-minute" name="intermittent-start-time-minute">
-                <option selected>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="intermittent-start-time-meridiem">Start Meridiem</label>
-              <select class="form-control time-control" id="intermittent-start-time-meridiem" name="intermittent-start-time-meridiem">
-                <option selected>AM</option>
-                <option>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">End time for this absence</legend>
-              <label class="control-label sr-only" for="intermittent-end-time-hour">End hour</label>
-              <select class="form-control time-control" id="intermittent-end-time-hour" name="intermittent-end-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option selected>11</option>									    
-                <option>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="intermittent-end-time-minute">End minute</label>
-              <select class="form-control time-control" id="intermittent-end-time-minute" name="intermittent-end-time-minute">
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option selected>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="intermittent-end-time-meridiem">End Meridiem</label>
-              <select class="form-control time-control" id="intermittent-end-time-meridiem" name="intermittent-end-time-meridiem">
-                <option>AM</option>
-                <option selected>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            </div>
-            
-
-        </div>
-
-        <!-- THIRD INTERMITTENT COLUMN -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-02" style="display:none;">
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Does this repeat?</legend>
-              <div class="radio">
-                <label for="intermittent-repeat-yes"><input type="radio" name="intermittent-repeat-choices" id="intermittent-repeat-yes" value="intermittent-repeat-yes">Yes</label>
-              </div>
-              <div class="radio">
-                <label for="intermittent-repeat-no"><input type="radio" name="intermittent-repeat-choices" id="intermittent-repeat-no" value="intermittent-repeat-no">No</label>
-              </div>
-              
-            </fieldset>
-
-            <div class="intermittent-repeat-options">
-                <legend class="control-label control-label-legend">Repeats</legend>
-                <div class="checkbox">
-                  <label for="check">
+            <div class="col-md-9">
+              <div class="calendar-container mt-3 row">
+                <div id="calendar" class="col-xs-12"></div>
+                <!-- TIME AWAY FORMS -->
+                <div class="calendar-forms leave-dates-form col-xs-12">
+                  <div class="row">
+                    <h3 class="text-primary">Time Away from Work <span class="fa fa-info-circle h3" role="button" tabindex="0" aria-pressed="false" data-toggle="modal" data-target="#typeOfAbsence"></span></h3>
+                    <!-- SELECTING TIME AWAY TYPE -->
+                    <div class="col-md-12">
+                      <fieldset class="form-group time-away-type-wrapper">
+                      <legend class="control-label control-label-legend">Type</legend>
+                      <div class="radio">
+                        <label for="time-away-continuous">
+                        <input type="radio" name="type-of-time-away" id="time-away-continuous" value="time-away-continuous" checked>
+                        Continuous (more than three consecutive days)</label>
+                      </div>
+                      <div class="radio">
+                        <label for="time-away-intermittent">
+                        <input type="radio" name="type-of-time-away" id="time-away-intermittent" value="time-away-intermittent">
+                        Intermittent</label>
+                      </div>
+                      <div class="radio">
+                        <label for="time-away-reduced-hours">
+                        <input type="radio" name="type-of-time-away" id="time-away-reduced-hours" value="time-away-reduced-hours">
+                        Reduced Hours</label>
+                      </div>
+                      </fieldset>
+                    </div>
+                    <!-- CONTINUOUS FORM -->
+                    <div class="col-md-9 absence-type-based-form-wrapper continuous-form continous-01 js-example1">
+                      <div class="pru-datepicker">
+                        <div class="form-group">
+                          <label class="control-label" for="date-picker-continous-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="date-picker-continous-first-day" placeholder="" aria-describedby="date-picker-continous-first-day" aria-invalid="false">
+                            <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                          <div id="err-date-picker-continous-first-day" class="help-block hidden"></div>
+                        </div>
+                      </div>
+                      <div class="pru-datepicker">
+                        <div class="form-group">
+                          <label class="control-label" for="date-picker-continous-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="date-picker-continous-last-day" placeholder="" aria-describedby="date-picker-continous-last-day" aria-invalid="false">
+                            <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                          <div id="err-date-picker-continous-last-day" class="help-block hidden"></div>
+                        </div>
+                      </div>
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">Start time for this absence</legend>
+                      <label class="control-label sr-only" for="continuous-start-time-hour">Start hour</label>
+                      <select class="form-control time-control" id="continuous-start-time-hour" name="continuous-start-time-hour">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option selected>12</option>
+                      </select>
+                      <label class="control-label sr-only" for="continuous-start-time-minute">Start minute</label>
+                      <select class="form-control time-control" id="continuous-start-time-minute" name="continuous-start-time-minute">
+                        <option selected>00</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
+                        <option>51</option>
+                        <option>52</option>
+                        <option>53</option>
+                        <option>54</option>
+                        <option>55</option>
+                        <option>56</option>
+                        <option>57</option>
+                        <option>58</option>
+                        <option>59</option>
+                      </select>
+                      <label class="control-label sr-only" for="continuous-start-time-meridiem">Start Meridiem</label>
+                      <select class="form-control time-control" id="continuous-start-time-meridiem" name="continuous-start-time-meridiem">
+                        <option selected>AM</option>
+                        <option>PM</option>
+                      </select>
+                      </fieldset>
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">End time for this absence</legend>
+                      <label class="control-label sr-only" for="continuous-end-time-hour">End hour</label>
+                      <select class="form-control time-control" id="continuous-end-time-hour" name="continuous-end-time-hour">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option selected>11</option>
+                        <option>12</option>
+                      </select>
+                      <label class="control-label sr-only" for="continuous-end-time-minute">End minute</label>
+                      <select class="form-control time-control" id="continuous-end-time-minute" name="continuous-end-time-minute">
+                        <option>00</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
+                        <option>51</option>
+                        <option>52</option>
+                        <option>53</option>
+                        <option>54</option>
+                        <option>55</option>
+                        <option>56</option>
+                        <option>57</option>
+                        <option>58</option>
+                        <option selected>59</option>
+                      </select>
+                      <label class="control-label sr-only" for="continuous-end-time-meridiem">End Meridiem</label>
+                      <select class="form-control time-control" id="continuous-end-time-meridiem" name="continuous-end-time-meridiem">
+                        <option>AM</option>
+                        <option selected>PM</option>
+                      </select>
+                      </fieldset>
+                    </div>
+                    <!-- INTERMITTENT FORM -->
+                    <!-- FIRST INTERMITTENT COLUMN -->
+                    <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-03 js-example1" style="display:none;">
+                      <div class="pru-datepicker">
+                        <div class="form-group">
+                          <label class="control-label" for="date-picker-intermittent-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="date-picker-intermittent-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
+                            <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                          <div id="err-date-picker-intermittent-first-day"class="help-block hidden"></div>
+                        </div>
+                      </div>
+                      <div class="pru-datepicker">
+                        <div class="form-group">
+                          <label class="control-label" for="date-picker-intermittent-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="date-picker-intermittent-last-day" placeholder="" aria-describedby="date-picker-intermittent-last-day" aria-invalid="false">
+                            <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                          <div id="err-date-picker-intermittent-last-day" class="help-block hidden"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- SECOND INTERMITTENT COLUMN -->
+                    <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-01" style="display:none;">
+                      <div class="checkbox intermittent-all-day-checkbox-wrapper">
+                        <label for="intermittent-all-day-checkbox">
+                        <input type="checkbox" id="intermittent-all-day-checkbox" name="intermittent-all-day-checkbox">
+                        All day </label>
+                      </div>
+                      <div class="fieldset intermittent-times-selections">
+                        <fieldset class="form-group">
+                        <legend class="control-label control-label-legend">Start time for this absence</legend>
+                        <label class="control-label sr-only" for="intermittent-start-time-hour">Start hour</label>
+                        <select class="form-control time-control" id="intermittent-start-time-hour" name="intermittent-start-time-hour">
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option selected>12</option>
+                        </select>
+                        <label class="control-label sr-only" for="intermittent-start-time-minute">Start minute</label>
+                        <select class="form-control time-control" id="intermittent-start-time-minute" name="intermittent-start-time-minute">
+                          <option selected>00</option>
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>14</option>
+                          <option>15</option>
+                          <option>16</option>
+                          <option>17</option>
+                          <option>18</option>
+                          <option>19</option>
+                          <option>20</option>
+                          <option>21</option>
+                          <option>22</option>
+                          <option>23</option>
+                          <option>24</option>
+                          <option>25</option>
+                          <option>26</option>
+                          <option>27</option>
+                          <option>28</option>
+                          <option>29</option>
+                          <option>30</option>
+                          <option>31</option>
+                          <option>32</option>
+                          <option>33</option>
+                          <option>34</option>
+                          <option>35</option>
+                          <option>36</option>
+                          <option>37</option>
+                          <option>38</option>
+                          <option>39</option>
+                          <option>40</option>
+                          <option>41</option>
+                          <option>42</option>
+                          <option>43</option>
+                          <option>44</option>
+                          <option>45</option>
+                          <option>46</option>
+                          <option>47</option>
+                          <option>48</option>
+                          <option>49</option>
+                          <option>50</option>
+                          <option>51</option>
+                          <option>52</option>
+                          <option>53</option>
+                          <option>54</option>
+                          <option>55</option>
+                          <option>56</option>
+                          <option>57</option>
+                          <option>58</option>
+                          <option>59</option>
+                        </select>
+                        <label class="control-label sr-only" for="intermittent-start-time-meridiem">Start Meridiem</label>
+                        <select class="form-control time-control" id="intermittent-start-time-meridiem" name="intermittent-start-time-meridiem">
+                          <option selected>AM</option>
+                          <option>PM</option>
+                        </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                        <legend class="control-label control-label-legend">End time for this absence</legend>
+                        <label class="control-label sr-only" for="intermittent-end-time-hour">End hour</label>
+                        <select class="form-control time-control" id="intermittent-end-time-hour" name="intermittent-end-time-hour">
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option selected>11</option>
+                          <option>12</option>
+                        </select>
+                        <label class="control-label sr-only" for="intermittent-end-time-minute">End minute</label>
+                        <select class="form-control time-control" id="intermittent-end-time-minute" name="intermittent-end-time-minute">
+                          <option>00</option>
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>14</option>
+                          <option>15</option>
+                          <option>16</option>
+                          <option>17</option>
+                          <option>18</option>
+                          <option>19</option>
+                          <option>20</option>
+                          <option>21</option>
+                          <option>22</option>
+                          <option>23</option>
+                          <option>24</option>
+                          <option>25</option>
+                          <option>26</option>
+                          <option>27</option>
+                          <option>28</option>
+                          <option>29</option>
+                          <option>30</option>
+                          <option>31</option>
+                          <option>32</option>
+                          <option>33</option>
+                          <option>34</option>
+                          <option>35</option>
+                          <option>36</option>
+                          <option>37</option>
+                          <option>38</option>
+                          <option>39</option>
+                          <option>40</option>
+                          <option>41</option>
+                          <option>42</option>
+                          <option>43</option>
+                          <option>44</option>
+                          <option>45</option>
+                          <option>46</option>
+                          <option>47</option>
+                          <option>48</option>
+                          <option>49</option>
+                          <option>50</option>
+                          <option>51</option>
+                          <option>52</option>
+                          <option>53</option>
+                          <option>54</option>
+                          <option>55</option>
+                          <option>56</option>
+                          <option>57</option>
+                          <option>58</option>
+                          <option selected>59</option>
+                        </select>
+                        <label class="control-label sr-only" for="intermittent-end-time-meridiem">End Meridiem</label>
+                        <select class="form-control time-control" id="intermittent-end-time-meridiem" name="intermittent-end-time-meridiem">
+                          <option>AM</option>
+                          <option selected>PM</option>
+                        </select>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <!-- THIRD INTERMITTENT COLUMN -->
+                    <div class="col-md-9 absence-type-based-form-wrapper intermittent-form intermittent-02" style="display:none;">
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">Does this repeat?</legend>
+                      <div class="radio">
+                        <label for="intermittent-repeat-yes">
+                        <input type="radio" name="intermittent-repeat-choices" id="intermittent-repeat-yes" value="intermittent-repeat-yes">
+                        Yes</label>
+                      </div>
+                      <div class="radio">
+                        <label for="intermittent-repeat-no">
+                        <input type="radio" name="intermittent-repeat-choices" id="intermittent-repeat-no" value="intermittent-repeat-no">
+                        No</label>
+                      </div>
+                      </fieldset>
+                      <div class="intermittent-repeat-options">
+                        <legend class="control-label control-label-legend">Repeats</legend>
+                        <div class="checkbox">
+                          <label for="check">
                     <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-sunday"> Sunday
                   </label>
                 </div>
@@ -757,704 +757,682 @@
                   <label for="check">
                     <input type="checkbox" name="intermittent-repeat-days" id="intermittent-repeat-saturday"> Saturday
                   </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- REDUCED FORM -->
+                    <div class="col-md-9 absence-type-based-form-wrapper reduced-form reduced-01 mb-3 js-example1" style="display:none;">
+                      <div class="pru-datepicker">
+                        <div class="form-group">
+                          <label class="control-label" for="date-picker-reduced-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="date-picker-reduced-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
+                            <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                          <div id="err-date-picker-reduced-first-day"class="help-block hidden"></div>
+                        </div>
+                      </div>
+                      <div class="pru-datepicker">
+                        <div class="form-group">
+                          <label class="control-label" for="date-picker-reduced-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="date-picker-reduced-last-day" placeholder="" aria-describedby="date-picker-reduced-last-day" aria-invalid="false">
+                            <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span> </div>
+                          <div id="err-date-picker-reduced-last-day" class="help-block hidden"></div>
+                        </div>
+                      </div>
+                      <div class="fieldset reduced-times-selections">
+                        <fieldset class="form-group">
+                        <legend class="control-label control-label-legend">Start time for this absence</legend>
+                        <label class="control-label sr-only" for="reduced-start-time-hour">Start hour</label>
+                        <select class="form-control time-control" id="reduced-start-time-hour" name="reduced-start-time-hour">
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option selected>12</option>
+                        </select>
+                        <label class="control-label sr-only" for="reduced-start-time-minute">Start minute</label>
+                        <select class="form-control time-control" id="reduced-start-time-minute" name="reduced-start-time-minute">
+                          <option selected>00</option>
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>14</option>
+                          <option>15</option>
+                          <option>16</option>
+                          <option>17</option>
+                          <option>18</option>
+                          <option>19</option>
+                          <option>20</option>
+                          <option>21</option>
+                          <option>22</option>
+                          <option>23</option>
+                          <option>24</option>
+                          <option>25</option>
+                          <option>26</option>
+                          <option>27</option>
+                          <option>28</option>
+                          <option>29</option>
+                          <option>30</option>
+                          <option>31</option>
+                          <option>32</option>
+                          <option>33</option>
+                          <option>34</option>
+                          <option>35</option>
+                          <option>36</option>
+                          <option>37</option>
+                          <option>38</option>
+                          <option>39</option>
+                          <option>40</option>
+                          <option>41</option>
+                          <option>42</option>
+                          <option>43</option>
+                          <option>44</option>
+                          <option>45</option>
+                          <option>46</option>
+                          <option>47</option>
+                          <option>48</option>
+                          <option>49</option>
+                          <option>50</option>
+                          <option>51</option>
+                          <option>52</option>
+                          <option>53</option>
+                          <option>54</option>
+                          <option>55</option>
+                          <option>56</option>
+                          <option>57</option>
+                          <option>58</option>
+                          <option>59</option>
+                        </select>
+                        <label class="control-label sr-only" for="reduced-start-time-meridiem">Start Meridiem</label>
+                        <select class="form-control time-control" id="reduced-start-time-meridiem" name="reduced-start-time-meridiem">
+                          <option selected>AM</option>
+                          <option>PM</option>
+                        </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                        <legend class="control-label control-label-legend">End time for this absence</legend>
+                        <label class="control-label sr-only" for="reduced-end-time-hour">End hour</label>
+                        <select class="form-control time-control" id="reduced-end-time-hour" name="reduced-end-time-hour">
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option selected>11</option>
+                          <option>12</option>
+                        </select>
+                        <label class="control-label sr-only" for="reduced-end-time-minute">End minute</label>
+                        <select class="form-control time-control" id="reduced-end-time-minute" name="reduced-end-time-minute">
+                          <option>00</option>
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>14</option>
+                          <option>15</option>
+                          <option>16</option>
+                          <option>17</option>
+                          <option>18</option>
+                          <option>19</option>
+                          <option>20</option>
+                          <option>21</option>
+                          <option>22</option>
+                          <option>23</option>
+                          <option>24</option>
+                          <option>25</option>
+                          <option>26</option>
+                          <option>27</option>
+                          <option>28</option>
+                          <option>29</option>
+                          <option>30</option>
+                          <option>31</option>
+                          <option>32</option>
+                          <option>33</option>
+                          <option>34</option>
+                          <option>35</option>
+                          <option>36</option>
+                          <option>37</option>
+                          <option>38</option>
+                          <option>39</option>
+                          <option>40</option>
+                          <option>41</option>
+                          <option>42</option>
+                          <option>43</option>
+                          <option>44</option>
+                          <option>45</option>
+                          <option>46</option>
+                          <option>47</option>
+                          <option>48</option>
+                          <option>49</option>
+                          <option>50</option>
+                          <option>51</option>
+                          <option>52</option>
+                          <option>53</option>
+                          <option>54</option>
+                          <option>55</option>
+                          <option>56</option>
+                          <option>57</option>
+                          <option>58</option>
+                          <option selected>59</option>
+                        </select>
+                        <label class="control-label sr-only" for="reduced-end-time-meridiem">End Meridiem</label>
+                        <select class="form-control time-control" id="reduced-end-time-meridiem" name="reduced-end-time-meridiem">
+                          <option>AM</option>
+                          <option selected>PM</option>
+                        </select>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ENTER, DELETE AND CANCEL BUTTONS FOR TIME AWAY -->
+                  <div class="row margin-top-20">
+                    <div class="col-xs-4">
+                      <button class="btn btn-default" type="button" id="btnAbsenceCancel">Cancel</button>
+                    </div>
+                    <div class="col-xs-4" align="center">
+                      <button class="btn btn-default hide" type="button" id="btnAbsenceDelete">Delete</button>
+                    </div>
+                    <div class="col-xs-4" align="right">
+                      <button class="btn btn-primary" type="button" id="enterAbsenceButton">Enter</button>
+                    </div>
+                  </div>
                 </div>
-
-
-            </div>
-
-        </div>
-
-        <!-- REDUCED FORM -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper reduced-form reduced-01 mb-3 js-example1" style="display:none;">
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-reduced-first-day">First day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-reduced-first-day" placeholder="" aria-describedby="date-picker-intermitten-first-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
+                <!-- END OF TIME AWAY FRORMS -->
+                <div class="calendar-forms work-schedule-form">
+                  <h3 class="text-primary">Work Schedule</h3>
+                  <h4>Week <span id="weekDates"></span></h4>
+                  <div class="col-md-9 absence-type-based-form-wrapper work-schedule-form work-schedule-01">
+                    <div class="fieldset work-schedule-times-selections">
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">Start time</legend>
+                      <label class="control-label sr-only" for="work-schedule-start-time-hour">Start hour</label>
+                      <select class="form-control time-control" id="work-schedule-start-time-hour" name="work-schedule-start-time-hour">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option selected>12</option>
+                      </select>
+                      <label class="control-label sr-only" for="work-schedule-start-time-minute">Start minute</label>
+                      <select class="form-control time-control" id="work-schedule-start-time-minute" name="work-schedule-start-time-minute">
+                        <option selected>00</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
+                        <option>51</option>
+                        <option>52</option>
+                        <option>53</option>
+                        <option>54</option>
+                        <option>55</option>
+                        <option>56</option>
+                        <option>57</option>
+                        <option>58</option>
+                        <option>59</option>
+                      </select>
+                      <label class="control-label sr-only" for="work-schedule-start-time-meridiem">Start Meridiem</label>
+                      <select class="form-control time-control" id="work-schedule-start-time-meridiem" name="work-schedule-start-time-meridiem">
+                        <option selected>AM</option>
+                        <option>PM</option>
+                      </select>
+                      </fieldset>
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">End time</legend>
+                      <label class="control-label sr-only" for="work-schedule-end-time-hour">End hour</label>
+                      <select class="form-control time-control" id="work-schedule-end-time-hour" name="work-schedule-end-time-hour">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option selected>11</option>
+                        <option>12</option>
+                      </select>
+                      <label class="control-label sr-only" for="work-schedule-end-time-minute">End minute</label>
+                      <select class="form-control time-control" id="work-schedule-end-time-minute" name="work-schedule-end-time-minute">
+                        <option>00</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
+                        <option>51</option>
+                        <option>52</option>
+                        <option>53</option>
+                        <option>54</option>
+                        <option>55</option>
+                        <option>56</option>
+                        <option>57</option>
+                        <option>58</option>
+                        <option selected>59</option>
+                      </select>
+                      <label class="control-label sr-only" for="work-schedule-end-time-meridiem">End Meridiem</label>
+                      <select class="form-control time-control" id="work-schedule-end-time-meridiem" name="work-schedule-end-time-meridiem">
+                        <option>AM</option>
+                        <option selected>PM</option>
+                      </select>
+                      </fieldset>
+                    </div>
+                    <div class="fieldset work-schedule-times-selections">
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">Meal begin</legend>
+                      <label class="control-label sr-only" for="meal-begin-start-time-hour">Start hour</label>
+                      <select class="form-control time-control" id="meal-begin-start-time-hour" name="meal-begin-start-time-hour">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option selected>12</option>
+                      </select>
+                      <label class="control-label sr-only" for="meal-begin-start-time-minute">Start minute</label>
+                      <select class="form-control time-control" id="meal-begin-start-time-minute" name="meal-begin-start-time-minute">
+                        <option selected>00</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
+                        <option>51</option>
+                        <option>52</option>
+                        <option>53</option>
+                        <option>54</option>
+                        <option>55</option>
+                        <option>56</option>
+                        <option>57</option>
+                        <option>58</option>
+                        <option>59</option>
+                      </select>
+                      <label class="control-label sr-only" for="meal-begin-start-time-meridiem">Start Meridiem</label>
+                      <select class="form-control time-control" id="meal-begin-start-time-meridiem" name="meal-begin-start-time-meridiem">
+                        <option selected>AM</option>
+                        <option>PM</option>
+                      </select>
+                      </fieldset>
+                      <fieldset class="form-group">
+                      <legend class="control-label control-label-legend">Meal end</legend>
+                      <label class="control-label sr-only" for="meal-begin-end-time-hour">End hour</label>
+                      <select class="form-control time-control" id="meal-begin-end-time-hour" name="meal-begin-end-time-hour">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option selected>11</option>
+                        <option>12</option>
+                      </select>
+                      <label class="control-label sr-only" for="meal-begin-end-time-minute">End minute</label>
+                      <select class="form-control time-control" id="meal-begin-end-time-minute" name="meal-begin-end-time-minute">
+                        <option>00</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
+                        <option>47</option>
+                        <option>48</option>
+                        <option>49</option>
+                        <option>50</option>
+                        <option>51</option>
+                        <option>52</option>
+                        <option>53</option>
+                        <option>54</option>
+                        <option>55</option>
+                        <option>56</option>
+                        <option>57</option>
+                        <option>58</option>
+                        <option selected>59</option>
+                      </select>
+                      <label class="control-label sr-only" for="meal-begin-end-time-meridiem">End Meridiem</label>
+                      <select class="form-control time-control" id="meal-begin-end-time-meridiem" name="meal-begin-end-time-meridiem">
+                        <option>AM</option>
+                        <option selected>PM</option>
+                      </select>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <!-- THIRD work-schedule COLUMN -->
+                  <div class="col-md-9 absence-type-based-form-wrapper work-schedule-form work-schedule-03">
+                    <div class="work-schedule-repeat-options">
+                      <legend class="control-label control-label-legend">Repeats</legend>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-sunday">
+                        Sunday </label>
+                      </div>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-monday">
+                        Monday </label>
+                      </div>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-tuesday">
+                        Tuesday </label>
+                      </div>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-wednesday">
+                        Wednesday </label>
+                      </div>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-thursday">
+                        Thursday </label>
+                      </div>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-friday">
+                        Friday </label>
+                      </div>
+                      <div class="checkbox">
+                        <label for="check">
+                        <input type="checkbox" id="work-schedule-repeat-saturday">
+                        Saturday </label>
+                      </div>
+                    </div>
+                    <fieldset class="form-group">
+                    <legend class="control-label control-label-legend">Is your work schedule the same every week?</legend>
+                    <div class="radio">
+                      <label for="work-schedule-same-yes">
+                      <input type="radio" name="work-schedule-same-choices" id="work-schedule-same-yes" value="work-schedule-same-yes">
+                      Yes</label>
+                    </div>
+                    <div class="radio">
+                      <label for="work-schedule-same-no">
+                      <input type="radio" name="work-schedule-same-choices" id="work-schedule-same-no" value="work-schedule-same-no">
+                      No</label>
+                    </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                    <legend class="control-label control-label-legend">Do you know the work schedule for next week?</legend>
+                    <div class="radio">
+                      <label for="work-schedule-next-yes">
+                      <input type="radio" name="work-schedule-next-choices" id="work-schedule-next-yes" value="work-schedule-next-yes">
+                      Yes</label>
+                    </div>
+                    <div class="radio">
+                      <label for="work-schedule-next-no">
+                      <input type="radio" name="work-schedule-next-choices" id="work-schedule-next-no" value="work-schedule-next-no">
+                      No</label>
+                    </div>
+                    </fieldset>
+                  </div>
+                  <div class="col-xs-12">
+                    <!-- ENTER, DELETE AND CANCEL BUTTONS FOR Work Schedule -->
+                    <div class="row margin-top-20">
+                      <div class="col-xs-4">
+                        <button class="btn btn-default" type="button" id="btnWorkScheduleCancel">Cancel</button>
+                      </div>
+                      <div class="col-xs-4" align="center">
+                        <button class="btn btn-default hide" type="button" id="btnWorkScheduleDelete">Delete</button>
+                      </div>
+                      <div class="col-xs-4" align="right">
+                        <button class="btn btn-primary" type="button" id="enterWorkScheduleButton">Enter</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div id="err-date-picker-reduced-first-day"class="help-block hidden"></div>
+                <div class="calendar-forms pto-form"> PTO FORM </div>
+              </div>
+              <div class="row hidden-md hidden-lg">
+                <div class="col-xs-12">
+                  <div id="colorLegend2" class="margin-top-20">
+                    <ul class="colorLegend">
+                      <li><span class="colorToday"></span> Today</li>
+                      <li><span class="colorHoliday"></span> Company Holiday</li>
+                      <li><span class="colorAbsence"></span> Absence Duration</li>
+                      <li><span class="colorContinuous"></span> Time Away</li>
+                      <!--<li><span class="colorRelevant"></span> Relevant Work Week</li>-->
+                      <li><span class="colorWork"></span> Work Schedule</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div class="pru-datepicker">
-              <div class="form-group">
-                <label class="control-label" for="date-picker-reduced-last-day">Last day of this absence <span class="text-muted">(MM/DD/YYYY)</span></label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="date-picker-reduced-last-day" placeholder="" aria-describedby="date-picker-reduced-last-day" aria-invalid="false">
-                  <span class="input-group-addon" aria-hidden="true"><span class="fa fa-calendar"></span></span>
-                </div>
-                <div id="err-date-picker-reduced-last-day" class="help-block hidden"></div>
-              </div>
-            </div>
-			<div class="fieldset reduced-times-selections">
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Start time for this absence</legend>
-              <label class="control-label sr-only" for="reduced-start-time-hour">Start hour</label>
-              <select class="form-control time-control" id="reduced-start-time-hour" name="reduced-start-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option selected>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="reduced-start-time-minute">Start minute</label>
-              <select class="form-control time-control" id="reduced-start-time-minute" name="reduced-start-time-minute">
-                <option selected>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="reduced-start-time-meridiem">Start Meridiem</label>
-              <select class="form-control time-control" id="reduced-start-time-meridiem" name="reduced-start-time-meridiem">
-                <option selected>AM</option>
-                <option>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">End time for this absence</legend>
-              <label class="control-label sr-only" for="reduced-end-time-hour">End hour</label>
-              <select class="form-control time-control" id="reduced-end-time-hour" name="reduced-end-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option selected>11</option>									    
-                <option>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="reduced-end-time-minute">End minute</label>
-              <select class="form-control time-control" id="reduced-end-time-minute" name="reduced-end-time-minute">
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option selected>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="reduced-end-time-meridiem">End Meridiem</label>
-              <select class="form-control time-control" id="reduced-end-time-meridiem" name="reduced-end-time-meridiem">
-                <option>AM</option>
-                <option selected>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            </div>
-
+          </div>
+          <div class="clear"></div>
         </div>
-	</div>
-        <!-- ENTER, DELETE AND CANCEL BUTTONS FOR TIME AWAY -->
-
-        <div class="row margin-top-20"> 
-            <div class="col-xs-4">
-                <button class="btn btn-default" type="button" id="btnAbsenceCancel">Cancel</button>
-            </div>
-            <div class="col-xs-4" align="center">
-                <button class="btn btn-default hide" type="button" id="btnAbsenceDelete">Delete</button>
-            </div>
-            <div class="col-xs-4" align="right">
-                <button class="btn btn-primary" type="button" id="enterAbsenceButton">Enter</button>
-            </div>
-
-            
+        <div class="padding-bottom-30">
+          <button class="btn btn-default" type="button" id="btnBack">Back</button>
+          <button class="btn btn-primary" type="button" id="btnSaveAndContinue" disabled>Save &amp; Continue</button>
         </div>
-
+      </div>
     </div>
-
-    <!-- END OF TIME AWAY FRORMS -->
-
-
-    <div class="calendar-forms work-schedule-form">
-		<h3 class="text-primary">Work Schedule</h3>
-        <h4>Week 1 <span id="weekDates"></span></h4>
-        <div class="col-md-9 absence-type-based-form-wrapper work-schedule-form work-schedule-01">
-            <div class="fieldset work-schedule-times-selections">
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Start time</legend>
-              <label class="control-label sr-only" for="work-schedule-start-time-hour">Start hour</label>
-              <select class="form-control time-control" id="work-schedule-start-time-hour" name="work-schedule-start-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option selected>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="work-schedule-start-time-minute">Start minute</label>
-              <select class="form-control time-control" id="work-schedule-start-time-minute" name="work-schedule-start-time-minute">
-                <option selected>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="work-schedule-start-time-meridiem">Start Meridiem</label>
-              <select class="form-control time-control" id="work-schedule-start-time-meridiem" name="work-schedule-start-time-meridiem">
-                <option selected>AM</option>
-                <option>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">End time</legend>
-              <label class="control-label sr-only" for="work-schedule-end-time-hour">End hour</label>
-              <select class="form-control time-control" id="work-schedule-end-time-hour" name="work-schedule-end-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option selected>11</option>									    
-                <option>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="work-schedule-end-time-minute">End minute</label>
-              <select class="form-control time-control" id="work-schedule-end-time-minute" name="work-schedule-end-time-minute">
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option selected>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="work-schedule-end-time-meridiem">End Meridiem</label>
-              <select class="form-control time-control" id="work-schedule-end-time-meridiem" name="work-schedule-end-time-meridiem">
-                <option>AM</option>
-                <option selected>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            </div>
-            <div class="fieldset work-schedule-times-selections">
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Meal begin</legend>
-              <label class="control-label sr-only" for="meal-begin-start-time-hour">Start hour</label>
-              <select class="form-control time-control" id="meal-begin-start-time-hour" name="meal-begin-start-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option selected>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="meal-begin-start-time-minute">Start minute</label>
-              <select class="form-control time-control" id="meal-begin-start-time-minute" name="meal-begin-start-time-minute">
-                <option selected>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="meal-begin-start-time-meridiem">Start Meridiem</label>
-              <select class="form-control time-control" id="meal-begin-start-time-meridiem" name="meal-begin-start-time-meridiem">
-                <option selected>AM</option>
-                <option>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Meal end</legend>
-              <label class="control-label sr-only" for="meal-begin-end-time-hour">End hour</label>
-              <select class="form-control time-control" id="meal-begin-end-time-hour" name="meal-begin-end-time-hour">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option selected>11</option>									    
-                <option>12</option>											    
-              </select>									  
-              <label class="control-label sr-only" for="meal-begin-end-time-minute">End minute</label>
-              <select class="form-control time-control" id="meal-begin-end-time-minute" name="meal-begin-end-time-minute">
-                <option>00</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>									    
-                <option>08</option>
-                <option>09</option>									    
-                <option>10</option>									    
-                <option>11</option>									    
-                <option>12</option>											    
-                <option>13</option>											    
-                <option>14</option>											    
-                <option>15</option>											    
-                <option>16</option>											    
-                <option>17</option>											    
-                <option>18</option>											    
-                <option>19</option>											    
-                <option>20</option>											    
-                <option>21</option>											    
-                <option>22</option>											    
-                <option>23</option>											    
-                <option>24</option>											    
-                <option>25</option>											    
-                <option>26</option>											    
-                <option>27</option>											    
-                <option>28</option>											    
-                <option>29</option>											    
-                <option>30</option>											    
-                <option>31</option>											    
-                <option>32</option>											    
-                <option>33</option>											    
-                <option>34</option>											    
-                <option>35</option>											    
-                <option>36</option>											    
-                <option>37</option>											    
-                <option>38</option>											    
-                <option>39</option>											    
-                <option>40</option>											    
-                <option>41</option>											    
-                <option>42</option>											    
-                <option>43</option>											    
-                <option>44</option>											    
-                <option>45</option>											    
-                <option>46</option>											    
-                <option>47</option>											    
-                <option>48</option>											    
-                <option>49</option>											    
-                <option>50</option>											    
-                <option>51</option>											    
-                <option>52</option>											    
-                <option>53</option>											    
-                <option>54</option>											    
-                <option>55</option>											    
-                <option>56</option>											    
-                <option>57</option>											    
-                <option>58</option>											    
-                <option selected>59</option>											    
-              </select>	
-              <label class="control-label sr-only" for="meal-begin-end-time-meridiem">End Meridiem</label>
-              <select class="form-control time-control" id="meal-begin-end-time-meridiem" name="meal-begin-end-time-meridiem">
-                <option>AM</option>
-                <option selected>PM</option>										    
-              </select>								  
-            </fieldset>
-
-            </div>
-        </div>
-
-        <!-- THIRD work-schedule COLUMN -->
-
-        <div class="col-md-9 absence-type-based-form-wrapper work-schedule-form work-schedule-03">
-            <div class="work-schedule-repeat-options">
-                <legend class="control-label control-label-legend">Repeats</legend>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-sunday"> Sunday
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-monday"> Monday
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-tuesday"> Tuesday
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-wednesday"> Wednesday
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-thursday"> Thursday
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-friday"> Friday
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label for="check">
-                    <input type="checkbox" id="work-schedule-repeat-saturday"> Saturday
-                  </label>
-                </div>
-            </div>
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Is your work schedule the same every week?</legend>
-              <div class="radio">
-                <label for="work-schedule-same-yes"><input type="radio" name="work-schedule-same-choices" id="work-schedule-same-yes" value="work-schedule-same-yes">Yes</label>
-              </div>
-              <div class="radio">
-                <label for="work-schedule-same-no"><input type="radio" name="work-schedule-same-choices" id="work-schedule-same-no" value="work-schedule-same-no">No</label>
-              </div>
-              
-            </fieldset>
-            <fieldset class="form-group">
-              <legend class="control-label control-label-legend">Do you know the work schedule for next week?</legend>
-              <div class="radio">
-                <label for="work-schedule-next-yes"><input type="radio" name="work-schedule-next-choices" id="work-schedule-next-yes" value="work-schedule-next-yes">Yes</label>
-              </div>
-              <div class="radio">
-                <label for="work-schedule-next-no"><input type="radio" name="work-schedule-next-choices" id="work-schedule-next-no" value="work-schedule-next-no">No</label>
-              </div>
-              
-            </fieldset>
-        </div>
-        <div class="col-xs-12">
-        	<!-- ENTER, DELETE AND CANCEL BUTTONS FOR Work Schedule -->
-            <div class="row margin-top-20"> 
-                <div class="col-xs-4">
-                    <button class="btn btn-default" type="button" id="btnWorkScheduleCancel">Cancel</button>
-                </div>
-                <div class="col-xs-4" align="center">
-                    <button class="btn btn-default hide" type="button" id="btnWorkScheduleDelete">Delete</button>
-                </div>
-                <div class="col-xs-4" align="right">
-                    <button class="btn btn-primary" type="button" id="enterWorkScheduleButton">Enter</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="calendar-forms pto-form">
-        PTO FORM
-    </div>
-
-</div>
-<div class="row hidden-md hidden-lg">
-	<div class="col-xs-12">
-    	<div id="colorLegend2" class="margin-top-20">
-            <ul class="colorLegend">
-              <li><span class="colorToday"></span> Today</li>
-              <li><span class="colorHoliday"></span> Company Holiday</li>
-              <li><span class="colorAbsence"></span> Absence Duration</li>
-              <li><span class="colorContinuous"></span> Time Away</li>
-              <!--<li><span class="colorRelevant"></span> Relevant Work Week</li>-->
-              <li><span class="colorWork"></span> Work Schedule</li>
-            </ul>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-<div class="clear"></div>
-</div>
-<div class="padding-bottom-30">
-  <button class="btn btn-default" type="button" id="btnBack">Back</button>
-  <button class="btn btn-primary" type="button" id="btnSaveAndContinue" disabled>Save &amp; Continue</button>
-</div>
-</div>
-</div>
-</div>
-<div style="display:none" id="toFlexJson">{"paidTimeDays":[],"firstDayWeek":{"absenceStartDate":"Aug 02, 2018","startDayOfWeek":0,"lastWorkDate":"Aug 01, 2018","returnToWorkDate":"Aug 27, 2018","weekStartDate":"Aug 05, 2018"},"absenceStartDate":"Aug 02, 2018","errorMessages":null,"lastWorkDate":"Aug 01, 2018","workSchedule":[{"sequenceNum":1,"eventId":null,"weekStartDate":"Jul 29, 2018","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":1,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":2,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":3,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":4,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":5,"startTime":"8:0"}]},{"sequenceNum":1,"eventId":null,"weekStartDate":"Feb 18, 2018","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":1,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":2,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":3,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":4,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":5,"startTime":"11:30"}]},{"sequenceNum":1,"eventId":null,"weekStartDate":"Jan 08, 2017","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":1,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":2,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":3,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":4,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":5,"startTime":"8:0"}]}],"events":[],"returnToWorkDate":"Aug 27, 2018","holidays":[],"questions":[{"selectedValue":null,"type":"TimeAway","description":"Leave Dates","text":"Please provide the dates and times that you will be away from work:","order":1,"refId":"403"},{"selectedValue":null,"type":"WorkSchedule","description":"Work Schedule","text":"Is this the correct work schedule?","order":2,"refId":"402"},{"selectedValue":null,"type":"PTO","description":"PTO Dates","text":"Please provide the dates that you will be using PTO time:","order":3,"refId":"405"}],"ptoTypes":[{"label":"Sick","code":"ZU001"},{"label":"Vacation","code":"ZU002"},{"label":"PTO","code":"ZU003"},{"label":"Floating Holiday","code":"ZU006"}]}</div>
+  </div>
+  <div style="display:none" id="toFlexJson">{"paidTimeDays":[],"firstDayWeek":{"absenceStartDate":"Aug 02, 2018","startDayOfWeek":0,"lastWorkDate":"Aug 01, 2018","returnToWorkDate":"Aug 27, 2018","weekStartDate":"Aug 05, 2018"},"absenceStartDate":"Aug 02, 2018","errorMessages":null,"lastWorkDate":"Aug 01, 2018","workSchedule":[{"sequenceNum":1,"eventId":null,"weekStartDate":"Jul 29, 2018","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":1,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":2,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":3,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":4,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":5,"startTime":"8:0"}]},{"sequenceNum":1,"eventId":null,"weekStartDate":"Feb 18, 2018","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":1,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":2,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":3,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":4,"startTime":"11:30"},{"mealEndTime":"15:30","endTime":"20:0","mealStartTime":"15:0","day":5,"startTime":"11:30"}]},{"sequenceNum":1,"eventId":null,"weekStartDate":"Jan 08, 2017","weekNumber":1,"standard":true,"workScheduleDays":[{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":1,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":2,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":3,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":4,"startTime":"8:0"},{"mealEndTime":"12:30","endTime":"16:30","mealStartTime":"12:0","day":5,"startTime":"8:0"}]}],"events":[],"returnToWorkDate":"Aug 27, 2018","holidays":[],"questions":[{"selectedValue":null,"type":"TimeAway","description":"Leave Dates","text":"Please provide the dates and times that you will be away from work:","order":1,"refId":"403"},{"selectedValue":null,"type":"WorkSchedule","description":"Work Schedule","text":"Is this the correct work schedule?","order":2,"refId":"402"},{"selectedValue":null,"type":"PTO","description":"PTO Dates","text":"Please provide the dates that you will be using PTO time:","order":3,"refId":"405"}],"ptoTypes":[{"label":"Sick","code":"ZU001"},{"label":"Vacation","code":"ZU002"},{"label":"PTO","code":"ZU003"},{"label":"Floating Holiday","code":"ZU006"}]}</div>
 </main>
 <div id="contactUsModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog modal-lg">
@@ -1479,6 +1457,33 @@
       </div>
       <div class="modal-footer">
         <button id="btnClose2" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="typeOfAbsence" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="typeOfAbsenceModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="btnClose3"><span class="fa fa-times" aria-hidden="true"></span> close</button>
+        <h2 class="modal-title" id="typeOfAbsenceModalLabel">Time Away from Work</h2>
+      </div>
+      <div class="modal-body">
+        <h3 id="typeOfAbsenceHead1">Continuous</h3>
+        <p id="typeOfAbsenceText1">A single absence period for the same reason/relationship, in which you do not return to work for <strong>more than three days.</strong></p>
+        <p id="typeOfAbsenceText2"><strong>Example:</strong> You were hospitalized from 9/4 to 9/12 and had surgery on 9/5, but your doctor indicates you should remain out of work until 10/22. You would request a continuous absence leave from 9/4 to 10/21.</p>
+        <hr />
+        <h3 id="typeOfAbsenceHead2">Intermittent</h3>
+        <p id="typeOfAbsenceText3">A repeating absence for the same reason/relationship.</strong></p>
+        <p id="typeOfAbsenceText4"><strong>Example:</strong> You had knee surgery as a result of a skiing injury. You are now able to return to work. However, will need one hour, 3 times per week for eight weeks in order to attend physical therapy appointments. You should request an absence for the 8-week period (for example, 10/1 through 11/26).</p>
+        <p id="typeOfAbsenceText5"><strong>Note:</strong> For some absences that include partial days, you would need to input separate absences into the calendar. So if you need to put in a two and a half day absence, you would add one intermittent absence for two days and another intermittent absence for a half day.</p>
+        <hr />
+        <h3 id="typeOfAbsenceHead3">Reduced Hours</h3>
+        <p id="typeOfAbsenceText6">A leave schedule that reduces your usual number of hours per workweek, or hours per workday.</p>
+        <p id="typeOfAbsenceText7"><strong>Example:</strong> This would be an absence with a repeating pattern that follows the same schedule (example: 12-5pm, Monday through Friday).</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btnClose4" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -1533,7 +1538,11 @@ document.title = "File a Claim / Report an Absence : Workplace Benefits - Pruden
 var continousAbsenceList = [],
 	IntermittentAbsenceList = [],
 	eventId,
-	eventTitle;
+	eventTitle,
+	eventObj;
+var jsonString = document.getElementById("toFlexJson").innerHTML;
+var jsonObject = JSON.parse(jsonString);
+//console.log(jsonObject);
 $( document ).ready(function() {
 	//$('#agreementModal').modal({backdrop: 'static', keyboard: false});
 	//$('#agreementModal').modal('show');
@@ -1576,25 +1585,22 @@ $( document ).ready(function() {
 		 	//var lastDay = moment(ev.date).add(3, 'days');
 	     	takingSingleDaySelectionIntoForms(moment(ev.date));
 		 }
-		 $('#btnAbsenceDelete').removeClass('show');
+		 $('#btnAbsenceDelete').addClass('hide');
          $(this).blur();
          $(this).pruDatePicker('hide');
      });
-	 var jsonString = document.getElementById("toFlexJson").innerHTML;
-	 var jsonObject = JSON.parse(jsonString);
-	 console.log(jsonObject);
 	 if(jsonObject.questions[0]){
 	 	document.getElementById("step1Head").innerHTML = jsonObject.questions[0].description;
 		document.getElementById("step1Text").innerHTML = jsonObject.questions[0].text;
 	 }
 	 if(jsonObject.questions[1]){
 		 document.getElementById("step2Head").innerHTML = jsonObject.questions[1].description;
-		 document.getElementById("step2Text").innerHTML = jsonObject.questions[1].text;
+		 document.getElementById("step2LegendText").innerHTML = jsonObject.questions[1].text;
 	 }
-	 if(jsonObject.questions[2]){
+	 /*if(jsonObject.questions[2]){
 	 	document.getElementById("step3Head").innerHTML = jsonObject.questions[2].description;
 	 	document.getElementById("step3Text").innerHTML = jsonObject.questions[2].text;
-	 }
+	 }*/
 	 var lastWorkDay = "Last Work Day";
 	 var firstAbsence = "First Absence";
 	 var returnToWork = "Return to Work";
@@ -1627,6 +1633,44 @@ $( document ).ready(function() {
 			day:	'Day',
 			list:	'List'
 		},
+		eventRender: function(calEvent, element) {
+			if(calEvent.title == lastWorkDay || calEvent.title == firstAbsence || calEvent.title == returnToWork)
+				return;
+			var startEvent = moment(calEvent.start).format('MM/DD/YYYY hh:mmA');
+			var endEvent = moment(calEvent.end).format('MM/DD/YYYY hh:mmA');
+			element.popover({
+			  title: calEvent.title,
+			  content: 'Start: ' + startEvent + '<br /> End: ' + endEvent,
+			  html: true,
+			  trigger: 'hover',
+			  placement: 'top',
+			  container: 'body'
+			}).on('show.bs.popover', function () {
+				$('.popover').popover('hide');
+			}).on('shown.bs.popover', function () {
+				$('.popover-title').append('<button type="button" class="close">&times;</button>');
+				$('.close').click(function(e){ 
+					$('.popover').popover('hide');
+				});
+			})
+			/*.on("hover",function(e) {
+				$('.popover').popover('hide');
+				$(this).popover('show');
+				$('.popover-title button.close').remove();
+				$('.popover-title').append('<button type="button" class="close">&times;</button>');
+				$('.close').click(function(e){ 
+					$('.popover').popover('hide');
+				});
+				clickedAway = false;
+				isVisible = true;
+				e.preventDefault();
+			});*/
+			if(calEvent.ranges){
+				return (calEvent.ranges.filter(function(range){
+					return (calEvent.start.isBefore(range.end) && calEvent.end.isAfter(range.start));
+				}).length)>0;
+			}
+		},
 		// editable: true,
 		eventClick: function(calEvent, jsEvent, view) {
 
@@ -1641,9 +1685,9 @@ $( document ).ready(function() {
 			
 			eventId = calEvent._id;
 			eventTitle = calEvent.title;
-		    alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
+			eventObj = calEvent;
 			takingSingleDaySelectionIntoForms(calEvent.start, calEvent.end);
-			$('#btnAbsenceDelete').addClass('show');
+			$('#btnAbsenceDelete').removeClass('hide');
 			
 			if(calEvent.title == "Continuous Time Away"){
 				$( "#time-away-continuous" ).prop( "checked", true );
@@ -1652,8 +1696,10 @@ $( document ).ready(function() {
 				$("time-away-intermittent").prop( "checked", true );
 				$("input[name='type-of-time-away']").trigger('change');
 			}
+			
+		    //alert('Event: ' + calEvent.title + ' // Start: ' + startEventClicked + ' // End: ' + endEventClicked + '.');
 
-			//$("#calendar").fullCalendar('removeEvents',eventId);
+
 		    // These commented lines I've left over from the documentation...
 
 		    // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -1665,7 +1711,34 @@ $( document ).ready(function() {
 		 },
 		//aspectRatio: 1,
 		height: "auto",
-		events: continousAbsenceList,
+		events: [
+				    
+				    // This is where we'll need to fetch existing absences from our database.
+
+				    // There can be different sources (JSON, an array, functions)
+
+				    // See here for documentation -- https://fullcalendar.io/docs/eventSources
+
+				    // These are placeholders.
+					{
+						title: lastWorkDay,
+						start: moment(jsonObject.lastWorkDate, 'MMM DD, YYYY'),
+						textColor: "#333",
+						color: "#fff"
+					},
+					{
+						title: firstAbsence,
+						start: moment(jsonObject.absenceStartDate, 'MMM DD, YYYY'),
+						textColor: "#333",
+						color: "#fff"
+					},
+					{
+						title: returnToWork,
+						start: moment(jsonObject.returnToWorkDate, 'MMM DD, YYYY'),
+						textColor: "#333",
+						color: "#fff"
+					}
+			  ],
 			dayRender: function (date, cell) {
 				var today = new Date().toDateString();
                 var ddate = date.toDate().toDateString();
@@ -1675,14 +1748,13 @@ $( document ).ready(function() {
 				if(date > startDate && date <= endDate) {
 					cell.css("background-color", "#F9F8FC");
 				}
-				if (ddate == today) {
+				/*if (ddate == today) {
 					cell.css("background-color", "#e3f2f4");
-				}
+				}*/
     		}
 	  });
 	 
 });
-
 function showInstructionStep(step)
 {
 	if($("#title"+step+"Instructions").find("i").hasClass("fa-chevron-down"))
@@ -1691,6 +1763,68 @@ function showInstructionStep(step)
 	$(".contentInstructions").slideUp();
 	$("#content"+step+"Instructions").slideDown();
 	$("#title"+step+"Instructions").find("i").removeClass("fa-chevron-right").addClass("fa-chevron-down");
+}
+function clearFields(){
+	document.getElementById("leaveStartDate").value = "";
+	document.getElementById("dKnow").checked = false;
+	document.getElementById("addYes").checked = false;
+	document.getElementById("addNo").checked = false;
+	document.getElementById("workScheduleCorrect").checked = false;
+	document.getElementById("workScheduleNotCorrect").checked = false;
+	document.getElementById("date-picker-continous-first-day").value = "";
+	document.getElementById("date-picker-continous-last-day").value = "";
+	document.getElementById("date-picker-intermittent-first-day").value = "";
+	document.getElementById("date-picker-intermittent-last-day").value = "";
+	document.getElementById("date-picker-reduced-first-day").value = "";
+	document.getElementById("date-picker-reduced-last-day").value = "";
+	document.getElementById("continuous-start-time-hour").selectedIndex = 11;
+	document.getElementById("continuous-start-time-minute").selectedIndex = 0;
+	document.getElementById("continuous-start-time-meridiem").selectedIndex = 0;
+	document.getElementById("continuous-end-time-hour").selectedIndex = 10;
+	document.getElementById("continuous-end-time-minute").selectedIndex = 59;
+	document.getElementById("continuous-end-time-meridiem").selectedIndex = 1;
+	//$("#content1ConfirmAddAnother").addClass("hide");
+}
+function addAnotherTimeAway(add){
+	if(add == "y"){
+		$(".calendar-forms").hide();
+		$("#calendar").hide();
+		$(".leave-dates-form").show();
+		clearFields();
+		$("#content1ConfirmAddAnother").addClass("hide");
+		document.getElementById("content1Instructions").style.display = "block";
+	}
+	else if(add == "n"){
+		$(".calendar-forms").hide();
+		$("#calendar").show();
+		showInstructionStep("2");
+		clearFields();
+		$("#content1ConfirmAddAnother").addClass("hide");
+		$("#calendar").show().fullCalendar('renderEvent',
+		{
+		  title: 'Work Schedule',
+		  start: jsonObject.workSchedule[0].workScheduleDays[0].startTime,
+		  end: jsonObject.workSchedule[0].workScheduleDays[0].endTime,
+		  description: 'Work Schedule',
+		  backgroundColor: "#b43582",
+		  dow: [ 1, 2, 3, 4, 5 ], 
+		  ranges: [{
+			start: moment(jsonObject.workSchedule[0].weekStartDate, 'MMM DD, YYYY'),
+			end: moment().add(1, 'year')
+		  }]
+		},
+		true);
+	}
+}
+function isWorkScheduleCorrect(correct){
+	if(correct == "y"){
+		document.getElementById("btnSaveAndContinue").disabled = false;
+	}
+	else if(correct == "n"){
+		document.getElementById("btnSaveAndContinue").disabled = true;
+		document.getElementById("content2Instructions").style.display = "none";
+		$("#editWorkSchedule").removeClass("hide");
+	}
 }
 function checkToEnableButton(){
 }
@@ -1703,7 +1837,6 @@ window.onload = function() {
 function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 	var startDate = tempDate.format("MM/DD/YYYY");
 	var endDate;
-	
 	if(tempEndDate != undefined)
 		endDate = tempEndDate.format("MM/DD/YYYY");
 	else
@@ -1719,12 +1852,11 @@ function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 		$(".calendar-forms").hide();
 		$("#calendar").hide();
 		$(".leave-dates-form").show();
-		
 		$("#date-picker-continous-first-day").val(startDate);
-		//if($("#date-picker-continous-last-day").val() == "")
+		if($("#date-picker-continous-last-day").val() == "")
 			$("#date-picker-continous-last-day").val(endDate);
 		$("#date-picker-intermittent-first-day").val(startDate);
-		//if($("#date-picker-intermittent-last-day").val() == "")
+		if($("#date-picker-intermittent-last-day").val() == "")
 			$("#date-picker-intermittent-last-day").val(startDate);
 		$("#date-picker-reduced-first-day").val(startDate);
 		if($("#date-picker-reduced-last-day").val() == "")
@@ -1734,6 +1866,9 @@ function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 		$("#calendar").hide();
 		$(".work-schedule-form").show();
 		document.getElementById("weekDates").innerHTML = "(" + weekFirstDate.format("MM/DD/YYYY") + " - " + weekLastDate.format("MM/DD/YYYY") + ")";
+		console.log(eventId + " : " + eventTitle + " : " + eventObj);
+		eventId.title = "CLICKED!";
+		$('#calendar').fullCalendar('updateEvent', eventId);
 	} else {
 		$(".calendar-forms").hide();
 		$("#calendar").hide();
@@ -1744,9 +1879,11 @@ function takingSingleDaySelectionIntoForms(tempDate,tempEndDate) {
 
 // WHEN CANCEL BUTTON IS CLICKED
 
-$(".panel-heading, .cancel-button").click(function() {
+$('#btnAbsenceCancel, #btnWorkScheduleCancel').on('click',function(){
+	$('#btnAbsenceDelete').addClass('hide');
 	$(".calendar-forms").hide();
 	$("#calendar").show();
+	clearFields();
 });
 
 // LOGIC FOR WHEN EACH TYPE OF TIME AWAY IS CHOSEN
@@ -1790,23 +1927,26 @@ $("input[name='intermittent-repeat-choices']").on("change", function(){
 $('#btnAbsenceDelete').on('click',function(){
 	var firstDateUnformatted = $("#date-picker-continous-first-day").val(),
 		endDateUnformatted = $("#date-picker-continous-last-day").val();
-	
-	$(".calendar-forms").hide();
-	$("#calendar").fullCalendar('removeEvents',eventId);
-	if(eventTitle == "Continuous Time Away"){
-		continousAbsenceList = continousAbsenceList.filter(function(item){
-			return moment(item.start).format('MM/DD/YYYY') != moment(firstDateUnformatted).format('MM/DD/YYYY');
-		});
-	}else if(eventTitle == "Intermittent Time Away"){
-		IntermittentAbsenceList = IntermittentAbsenceList.filter(function(item){
-			return moment(item.start).format('MM/DD/YYYY') != moment(firstDateUnformatted).format('MM/DD/YYYY');
-		});
+	var r=confirm("Delete " + eventTitle);
+	if (r === true){
+		$('#btnAbsenceDelete').addClass('hide');
+		$(".calendar-forms").hide();
+		$("#calendar").show();
+		clearFields();
+		if(eventTitle == "Continuous Time Away"){
+			$('#calendar').fullCalendar('removeEvents', eventId);
+				continousAbsenceList = continousAbsenceList.filter(function(item){
+				return moment(item.start).format('MM/DD/YYYY') != moment(firstDateUnformatted).format('MM/DD/YYYY');
+			});
+			return;
+		}else if(eventTitle == "Intermittent Time Away"){
+			$('#calendar').fullCalendar('removeEvents', eventId);
+				IntermittentAbsenceList = IntermittentAbsenceList.filter(function(item){
+				return moment(item.start).format('MM/DD/YYYY') != moment(firstDateUnformatted).format('MM/DD/YYYY');
+			});
+		}
 	}
-	$("#calendar").show();
-	
 });
-
-// WHEN ENTER BUTTON IS CLICKED IN ABSENCE FORMS
 
 function checkExistingevents(existingEvents,firstDateUnformatted,endDateUnformatted){
 	var sDate = firstDateUnformatted;
@@ -1817,7 +1957,7 @@ function checkExistingevents(existingEvents,firstDateUnformatted,endDateUnformat
 			firstDateUnformatted = sDate
 			while(new Date(firstDateUnformatted) <= new Date(endDateUnformatted)){
 				if(startDate == moment(firstDateUnformatted).format('MM/DD/YYYY')){
-					alert('Event already there...');
+					alert("Please review your requested absence time. You have requested absence time that has already been reported.");
 					return false;
 				}
 				firstDateUnformatted = moment(firstDateUnformatted).add(1,'days').format('MM/DD/YYYY');
@@ -1827,6 +1967,8 @@ function checkExistingevents(existingEvents,firstDateUnformatted,endDateUnformat
 	}
 	return true;
 }
+
+// WHEN ENTER BUTTON IS CLICKED IN ABSENCE FORMS
 
 $("#enterAbsenceButton").click(function() {
 	
@@ -1850,9 +1992,6 @@ $("#enterAbsenceButton").click(function() {
 		
 		if(!checkExistingevents(IntermittentAbsenceList,firstDateUnformatted,endDateUnformatted))
 			return false;
-		
-		//firstDateUnformatted = $("#date-picker-continous-first-day").val();
-		
 		var firstDayForCalc = moment(firstDateUnformatted, 'MM/DD/YYYY');
 		var lastDayForCalc = moment(endDateUnformatted, 'MM/DD/YYYY');
 		
@@ -1871,14 +2010,10 @@ $("#enterAbsenceButton").click(function() {
 		// Here we're checking that dates are four days a part, but because we include the first day, we do a three day check
 		
 		if (numberOfDaysApart < 3) {
-			alert("ERROR: for continuous absence, dates a part should be 4 or more days.");
+			alert("ERROR: Continuous absences must be longer than three days.");
 			return
 		} else {
 			// If we pass the four day test, we render event. Note here the method is renderEvent with no 's' at the end
-			/*while(new Date(lastDayForCalc) >= new Date(firstDayForCalc)){
-				continousAbsenceList.push(moment(firstDayForCalc).format('MM/DD/YYYY'));
-				firstDayForCalc = moment(firstDayForCalc).add(1,'days');
-			}*/
 			continousAbsenceList.push(
 				{
 				  title: 'Continuous Time Away',
@@ -1888,7 +2023,6 @@ $("#enterAbsenceButton").click(function() {
 				  backgroundColor: "#07639D"
 				}
 			);
-			
 			$("#calendar").show().fullCalendar('renderEvent',
 				{
 				  title: 'Continuous Time Away',
@@ -1898,9 +2032,9 @@ $("#enterAbsenceButton").click(function() {
 				  backgroundColor: "#07639D"
 				},
 			true);
-
-		alert("We should update the database at this point with a continuous event.");
-
+			document.getElementById("content1Instructions").style.display = "none";
+			$("#content1ConfirmAddAnother").removeClass("hide");
+			//alert("We should update the database at this point with a continuous event.");
 		}
 		
 
@@ -1927,7 +2061,7 @@ $("#enterAbsenceButton").click(function() {
 		var sDate = moment(firstDateUnformatted+" "+$("#intermittent-start-time-hour option:selected").text() + ":" + $("#intermittent-start-time-minute option:selected").text() +" "+ $("#intermittent-start-time-meridiem option:selected").text()),
 			eDate = moment(endDateUnformatted+" "+$("#intermittent-end-time-hour option:selected").text() + ":" + $("#intermittent-end-time-minute option:selected").text() +" "+ $("#intermittent-end-time-meridiem option:selected").text());
 		
-		if(eDate.diff(sDate,'minutes') >= 1439 && $('#intermittent-all-day-checkbox'). prop("checked") == false){
+		if(eDate.diff(sDate,'minutes') >= 1439 && $('#intermittent-all-day-checkbox').prop("checked") == false){
 			alert('Please select all day...');
 			return false;
 		}
@@ -1946,20 +2080,33 @@ $("#enterAbsenceButton").click(function() {
 		 var newIntermittentAbsences = [];
 
 		 // Now we'll loop through days between beginning and end
-		while(lastDayForCalc >= firstDayForCalc) {
+
+		 while(lastDayForCalc >= firstDayForCalc) {
+
+
 			var firstDayForCalFormatted = moment(firstDayForCalc).format("MM/DD/YYYY");
+
 			var startTimeUnformatted = $("#intermittent-start-time option:selected").text();
 			var endTimeUnformatted = $("#intermittent-end-time option:selected").text();
+
+
 			// Because we're looping through this day by day, the start and end dates should be the same
+
 			startConcatenated = firstDayForCalFormatted + " " + startTimeUnformatted;
 			endConcatenated = firstDayForCalFormatted + " " + endTimeUnformatted;
+
 			// There should be logic to make sure the start and end times aren't the same.
+
 			// This should porbably be handled in the form, but I wrote logic here to add one hour.
+
 			/*if (startConcatenated == endConcatenated) {
 				var fixedProblemEndTime = moment(endTimeUnformatted, "hh:mmA").add(1, 'hour'); 		
 				endConcatenated = firstDayForCalFormatted + " " + moment(fixedProblemEndTime).format("hh:mmA");
 			}*/
+
+
 			// Here we push the object into the array
+
 			newIntermittentAbsences.push( {
 				title: 'Intermittent Time Away',
 				start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
@@ -1967,7 +2114,7 @@ $("#enterAbsenceButton").click(function() {
 				description: 'Another intermittent absence',
 				backgroundColor: '#07639D'
 
-			} );
+			 } );
 			IntermittentAbsenceList.push({
 				title: 'Intermittent Time Away',
 				start: moment(startConcatenated, 'MM/DD/YYYY hh:mmA'),
@@ -1983,11 +2130,11 @@ $("#enterAbsenceButton").click(function() {
 			}else{
 				
 			}
-		}
+		 }
 
-		// Once we complete the loop, we render the array of events onto the calendar.
+		 // Once we complete the loop, we render the array of events onto the calendar.
 
-		// Note this method is renderEvents WITH AN 's' at the end
+		 // Note this method is renderEvents WITH AN 's' at the end
 
 		$("#calendar").show().fullCalendar('renderEvents', newIntermittentAbsences,
 			true);
@@ -2016,8 +2163,8 @@ $("#enterAbsenceButton").click(function() {
 	}
 
 	$(".calendar-forms").hide();
-
-
+	clearFields();
+	document.getElementById("title1Instructions").focus();
 });
 </script>
 </body>
